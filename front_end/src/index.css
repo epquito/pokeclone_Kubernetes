@@ -1,0 +1,1296 @@
+#root {
+  height: 100vh;
+  width: 100%;
+  min-width: 1080px;
+  min-height: 900px;
+}
+
+.full_page_div {
+  height: 100%;
+  width: 100%;
+}
+
+/* Nav Bar /////////////////////////////////////////////////////////////// */
+
+#nav_bar {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: left;
+  padding: 5px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.531);
+}
+
+#nav_logo {
+  width: 70px;
+  height: 70px;
+  margin-right: 20px;
+}
+
+.nav_link {
+  text-decoration: none;
+  color: rgb(39, 72, 154);
+  margin: 20px;
+}
+
+/* Landing Page ////////////////////////////////////////////////////////// */
+
+#landing_logo {
+  width: 500px;
+  height: 500px;
+  animation: floatUpDown 3s ease-in-out infinite;
+}
+
+#landing_main_div,
+#signup_div,
+#login_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("./assets/4.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
+.landing_buttons {
+  border: 2px solid whitesmoke;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgb(39, 72, 154);
+  color: whitesmoke;
+  width: 100px;
+  height: 50px;
+}
+
+.landing_buttons:hover {
+  background-color: rgb(211, 189, 21);
+  color: rgb(39, 72, 154);
+  border: 3px solid rgb(39, 72, 154);
+
+}
+
+@keyframes floatUpDown {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-25px);
+  }
+}
+
+/* Sign Up / Log In Page ////////////////////////////////////////////////////////// */
+
+.form_div {
+  background-color: rgba(245, 245, 245, 0.578);
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(39, 72, 154);
+}
+
+.the_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+input {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+  width: 100%;
+}
+
+.form_button {
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(39, 72, 154);
+  color: whitesmoke;
+  padding: 6px;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.form_button:hover {
+  background-color: rgb(211, 189, 21);
+  color: whitesmoke;
+}
+
+/* Home Page ////////////////////////////////////////////////////////// */
+
+#home_page_div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-image: url("./assets/treesandgrass.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.home_buttons {
+  width: 30%;
+  height: 40px;
+  border: none;
+  background-color: rgb(39, 72, 154);
+  color: white;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.home_buttons:hover {
+  background-color: rgb(211, 189, 21);
+}
+
+/* Starter Page ////////////////////////////////////////////////////////// */
+
+#starter_div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-image: url("./assets/Summer1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#starter_message_div {
+  height: 10%;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  position: absolute;
+  background-color: rgba(245, 245, 245, 0.427);
+}
+
+#starter_message {
+  color: rgb(39, 72, 154);
+}
+
+#all_starter_poke {
+  height: 60%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: end;
+  margin-top: 25%;
+}
+
+#starter_poke1 {
+  min-width: 250px;
+  min-height: 250px;
+  max-height: 300px;
+  max-width: 300px;
+}
+
+#starter_poke2 {
+  min-width: 250px;
+  min-height: 250px;
+  max-height: 300px;
+  max-width: 300px;
+}
+
+#starter_poke3 {
+  min-width: 250px;
+  min-height: 250px;
+  max-height: 300px;
+  max-width: 300px;
+}
+
+.starter_imgs {
+  height: 100%;
+  width: 100%;
+}
+
+.starter_imgs:hover {
+  background-color: rgba(245, 245, 245, 0.475);
+  border-radius: 20px;
+}
+
+/* Intro Page ////////////////////////////////////////////////////////// */
+
+#intro_div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("./assets/BattleBackgrounds/summer6.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+#intro_block1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8vh;
+  height: 10%;
+  width: 50%;
+  color: rgb(39, 72, 154);
+  background-color: rgba(245, 245, 245, 0.564);
+  border-radius: 20px;
+  margin-bottom: 1%;
+  padding: 20px;
+}
+
+#intro_block2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20%;
+  width: 80%;
+  color: rgb(39, 72, 154);
+  background-color: rgba(245, 245, 245, 0.564);
+  border-radius: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+/* Main Map Page ////////////////////////////////////////////////////////// */
+
+#main_map_div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0px;
+  justify-content: center;
+}
+
+.tile_map_div {
+  height: 12.8%;
+  width: 16.66666667%;
+  background-size: cover;
+  position: relative;
+  z-index: -1;
+}
+
+#overall_map {
+  margin-top: 8vh;
+  height: 100%;
+  flex-direction: column;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+}
+
+#upper_div {
+  height: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 2%;
+  position: relative;
+}
+
+#main_area_div {
+  height: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  position: relative;
+}
+
+#map_house_div {
+  width: 111px;
+  height: 170px;
+  background-image: url("./assets/MapTiles/house.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#poke_center_div {
+  width: 280px;
+  height: 250px;
+  background-image: url("./assets/MapTiles/pokecenter.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#gym_div {
+  width: 305px;
+  height: 200px;
+  background-image: url("./assets/MapTiles/gym.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tall_grass_div {
+  width: 20%;
+  height: 50%;
+  background-image: url('/src/assets/MapTiles/smallGrassTile.png');
+  background-size: 50px;
+  gap: 0px;
+  background-repeat: repeat;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#bottom_div {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  padding: 3vw;
+  height: 14%;
+}
+
+#main_pokedex_div {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 30px;
+  margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#main_pokedex_img {
+  width: 100%;
+  height: 100%;
+}
+
+.hover_text_map {
+  visibility: hidden;
+  color: whitesmoke;
+  text-shadow: 1px 1px gray;
+}
+
+.hover_div_map:hover .hover_text_map,
+.tall_grass_div:hover {
+  visibility: visible;
+}
+
+.tall_grass_div:hover {
+  background-color: rgb(105, 179, 105);
+  border-radius: 10px;
+}
+
+
+/* Battle Page ////////////////////////////////////////////////////////// */
+
+#battle_div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: url("./assets/BattleBackgrounds/grassland2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+  align-items: center;
+}
+
+#poke_div {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: 100%;
+  justify-content: space-evenly;
+  align-items: end;
+  padding-bottom: 30px;
+}
+
+#opponent_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  width: 50%;
+  margin-bottom: 2%;
+  color: white;
+  text-shadow: 1px 1px lightgray;
+}
+
+#your_pokemon_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  width: 50%;
+  color: white;
+  text-shadow: 1px 1px lightgray;
+}
+
+.pokemon_image {
+  position: relative;
+  width: 300%;
+  height: 300%;
+  animation: moveAnimation 0.6s ease-in-out;
+}
+
+.status_bar_div {
+  width: 200%;
+}
+
+.actual_status_bar {
+  width: 100%;
+  text-shadow: none;
+}
+
+#battle_options_div {
+  margin-top: 10vh;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  border-radius: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#moves_div {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgba(245, 245, 245, 0.448);
+  margin: 10px;
+  border-radius: 10px;
+}
+
+#other_options_div {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgba(245, 245, 245, 0.448);
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.battle_buttons {
+  width: 40%;
+  height: 30px;
+  border: none;
+  background-color: rgb(39, 72, 154);
+  color: white;
+  border-radius: 5px;
+}
+
+.battle_buttons:hover {
+  background-color: rgb(211, 189, 21);
+}
+
+/* .modal_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+} */
+
+.battle_modal_buttons {
+  border: 2px solid white;
+  border-radius: 10px;
+  margin: 10px;
+  color: white;
+  background-color: rgb(39, 72, 154);
+  padding: 5px;
+  width: 150px;
+  padding: 10px;
+}
+
+.battle_modal_buttons:hover {
+  background-color: rgb(211, 189, 21);
+}
+
+.change_poke_modal {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8vh;
+  color: rgb(39, 72, 154);
+}
+
+.modal_buttons_div {
+  display: flex;
+  width: 60%;
+  margin: 20px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Pokedex Page ///////////////////////////////////////////////////////////////////// */
+
+#pokedex_div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(173, 7, 7);
+  padding: 20px;
+  /* justify-content: center; */
+  align-items: center;
+  overflow: scroll;
+}
+
+#pokedex_inner_div {
+  margin-top: 8vh;
+  display: flex;
+  flex-direction: row;
+  background-color: gray;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 40px;
+  padding: 10px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  /* height: 100%; */
+  width: 90%;
+  border: 5px solid rgb(94, 93, 93);
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.367);
+  /* position: relative; */
+}
+
+.pokedex_card {
+  margin-top: 8vh;
+  border: 5px inset darkgray;
+  width: 200px;
+  height: 300px;
+  background-color: rgba(245, 245, 245, 0.721);
+  box-shadow: 2px 2px darkgray;
+  margin: 5%;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+}
+
+#pokedex_button {
+  border: none;
+  border-radius: 10px;
+  width: 200px;
+  color: whitesmoke;
+  background-color: rgb(39, 72, 154);
+  margin-top: 20px;
+}
+
+#pokedex_button:hover {
+  background-color: rgb(211, 189, 21);
+}
+
+
+/* PokeCenter //////////////////////////////////////////////////////////////////////// */
+
+.pokecenter_team {
+  margin-top: 0px;
+  padding: 5rem;
+  border-radius: 2rem;
+}
+
+.pokecenter {
+  width: 100%;
+  height: 100%;
+  background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/fs/28e13297263939.5ec14858dcc0a.jpg);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokecenter_buttons_div {
+  display: flex;
+  flex-direction: row;
+  border: none;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.pokecenter_buttons {
+  background-color: rgb(39, 72, 154);
+  border: none;
+  margin: 20px;
+  height: 40px;
+  width: 200px;
+}
+
+.pokecenter_buttons:hover {
+  background-color: rgb(211, 189, 21);
+}
+
+.more_buttons {
+  width: 500px;
+  background-color: lightpink;
+  color: whitesmoke;
+  text-shadow: 1px 1px lightcoral;
+  border: none;
+}
+
+.pokecenter_progress {
+  width: 500px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: whitesmoke !important;
+  color: rgba(211, 189, 21, 0.535) !important;
+  display: flex;
+}
+
+.progress-bar {
+  background-color: rgb(39, 72, 154) !important;
+}
+
+#pokecenter_list_item {
+  color: whitesmoke;
+  background-color: rgba(211, 189, 21, 0.694);
+  border: none;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+/* House Page //////////////////////////////////////////////////////////////////////// */
+
+#house_div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-image: url(/src/assets/house_background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.team_pokemons_div {
+  /* margin-top: 12vh; */
+  background-color: rgba(245,
+      245,
+      245,
+      0.686);
+  display: flex;
+  height: 40%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.captured_pokemons_div {
+  height: 40%;
+  background-color: rgba(245,
+      245,
+      245,
+      0.686);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.team_poke_div {
+  /* margin: 20px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  background-color: whitesmoke;
+  padding: 20px;
+  border-radius: 20px;
+  width: 250px;
+  height: 350px;
+  /* border: 2px solid lightgray; */
+}
+
+.house_buttons {
+  margin-top: 7px;
+  border: none;
+  border-radius: 10px;
+  color: whitesmoke;
+  background-color: rgb(39, 72, 154);
+  padding: 8px;
+  width: 100px;
+}
+
+.house_buttons:hover {
+  background-color: rgb(211, 189, 21);
+}
+
+.house_header {
+  margin-left: 36rem;
+  display:flex;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.763);
+  border:2px solid black;
+  border-radius: 5px;
+  width: 15rem;
+  height: 1.5rem;
+  align-items: center;
+}
+.house_headers {
+  margin-top: 9vh;
+  margin-left: 36rem;
+  display:flex;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.763);
+  border:2px solid black;
+  border-radius: 5px;
+  width: 15rem;
+  height: 1.5rem;
+  align-items: center;
+}
+
+/* GAME OVER ///////////////////////////////////////////////////////////////////////// */
+
+.gameover {
+  padding-top: 5em;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  background-image: url("./assets/BattleBackgrounds/night1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.gameover h1 {
+  margin-top: 10px;
+  animation: strobe 1s infinite alternate;
+  font-family: 'Lobster', cursive;
+}
+
+.gameover img {
+  width: 40rem;
+  height: 25rem;
+  border-radius: 1rem;
+  border: 2px solid whitesmoke;
+}
+
+@keyframes strobe {
+  0% {
+    color: white;
+  }
+
+  50% {
+    color: red;
+    /* Adjust the color as needed */
+  }
+
+  100% {
+    color: white;
+  }
+}
+
+.gameover_buttons_div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.gameover_buttons {
+  margin: 10px;
+  width: 150px;
+  height: 40px;
+  background-color: rgb(39, 72, 154);
+  border: none;
+}
+
+.gameover_buttons:hover {
+  background-color: rgb(211, 189, 21);
+}
+
+/* Victory Page ///////////////////////////////////////////////////////////////////// */
+
+.victory {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("./assets/6.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  color: whitesmoke;
+}
+
+.victory_team {
+  margin: 3rem;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  border-radius: 10px;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow-x: auto;
+}
+
+#victory_title {
+  text-shadow: 1px 1px gray;
+}
+
+#victory_div {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 5px;
+}
+
+.victory_progress {
+  height: 30px;
+  border-radius: 5px;
+  background-color: whitesmoke;
+  margin-top: 5px;
+}
+
+#victory_xp {
+  margin-top: 5px;
+}
+
+.victory_list {
+  background-color: rgba(245, 245, 245, 0.608);
+  border-radius: 10px !important;
+}
+
+.victory_button {
+  border: none;
+  border-radius: 7px;
+  background-color: rgb(39, 72, 154);
+  color: white;
+  width: 100px;
+  height: 35px;
+  margin-bottom: 20px;
+}
+
+.victory_button:hover {
+  background-color: rgb(211, 189, 21);
+}
+
+/* Gym Page ///////////////////////////////////////////////////////////////////////// */
+
+#gym_battle_div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-image: url("./assets/BattleBackgrounds/deep_forest.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+#gym_poke_div {
+  display: flex;
+  flex-direction: row;
+  min-width: 1000px;
+  max-width: 1200px;
+  height: 100%;
+  justify-content: space-evenly;
+  align-items: end;
+}
+
+.gym_status_bar_div {
+  width: 100%;
+}
+
+#gym_opponent_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  width: 50%;
+  padding: 100px;
+  color: whitesmoke;
+}
+
+#gym_your_pokemon_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 50%;
+  color: whitesmoke;
+}
+
+#gym_your_pokemon_status_div {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+}
+
+.gym_pokemon_image {
+  height: 300px;
+  width: 300px;
+}
+
+#gym_battle_options_div {
+  margin-top: 10vh;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  border-radius: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#gym_moves_div {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgba(245, 245, 245, 0.448);
+  margin: 10px;
+  border-radius: 10px;
+}
+
+#gym_other_options_div {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgba(245, 245, 245, 0.448);
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.hit_pic_user {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  margin-left: 100px;
+  margin-top: 100px;
+  z-index: 3;
+}
+/* /////////////////////////////////////////////////////////////////////////// */
+.bg-color-normal {
+  background-color: hsl(60, 22%, 56%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-fire {
+  background-color: rgb(240, 128, 48);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-water {
+  background-color: hsl(222, 82%, 67%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-grass {
+  background-color: rgb(120, 200, 80);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-electric {
+  background-color: hsl(48, 93%, 58%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-ice {
+  background-color: hsl(180, 45%, 72%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-fighting {
+  background-color: hsl(3, 66%, 45%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-poison {
+  background-color: hsl(300, 43%, 44%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-ground {
+  background-color: hsl(44, 66%, 64%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-flying {
+  background-color: hsl(255, 76%, 75%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-psychic {
+  background-color: hsl(342, 92%, 66%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-bug {
+  background-color: hsl(66, 70%, 42%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-rock {
+  background-color: hsl(49, 53%, 47%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-ghost {
+  background-color: hsl(263, 27%, 47%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-dragon {
+  background-color: hsl(258, 93%, 60%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-dark {
+  background-color: hsl(24, 22%, 36%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-steel {
+  background-color: hsl(240, 20%, 77%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.bg-color-fairy {
+  background-color: hsl(354, 66%, 83%);
+  border-radius: 30px;
+  width: 200px;
+  height: 300px;
+  padding-right: 12rem;
+  margin-bottom:1rem;
+}
+
+.b-color-normal {
+  border: 5px solid hsl(60, 22%, 56%);
+  border-radius: 23px;
+  margin: 20px;
+}
+.b-color-fire {
+  border: 5px solid rgb(240, 128, 48);
+  border-radius: 23px;
+  margin: 20px;
+}
+
+.b-color-ground {
+  border: 5px solid hsl(44, 66%, 64%);
+  border-radius: 23px;
+  margin: 20px;
+}
+
+.b-color-water {
+  border: 5px solid hsl(222, 82%, 67%);
+  border-radius: 23px;
+  margin: 20px;
+}
+
+/* ///////////////////// */
+.b-color-grass {
+  border: 5px solid rgb(120, 200, 80);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-electric {
+  border: 5px solid hsl(48, 93%, 58%);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-ice {
+  border: 5px solid hsl(180, 45%, 72%);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-fighting {
+  border: 5px solid hsl(3, 66%, 45%);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-poison {
+  border: 5px solid hsl(300, 43%, 44%);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-flying {
+  border: 5px solid hsl(255, 76%, 75%);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-psychic {
+  border: 5px solid hsl(342, 92%, 66%);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-bug {
+  border: 5px solid hsl(66, 70%, 42%);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-rock {
+  border: 5px solid hsl(49, 53%, 47%);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-ghost {
+  border: 5px solid hsl(263, 27%, 47%);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-dragon {
+  border: 5px solid hsl(258, 93%, 60%);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-dark {
+  border: 5px solid hsl(24, 22%, 36%);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-steel {
+  border: 5px solid hsl(240, 20%, 77%);
+  border-radius: 23px;
+  margin:20px;
+}
+
+.b-color-fairy {
+  border: 5px solid hsl(354, 66%, 83%);
+  border-radius: 23px;
+  margin:20px;
+}
