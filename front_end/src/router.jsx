@@ -78,7 +78,6 @@ const router = createBrowserRouter([
         element: <VictoryPage />
       }
     ]
-    
   },
 ]);
 

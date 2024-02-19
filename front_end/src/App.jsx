@@ -15,7 +15,7 @@ const [pokedex, setPokedex] = useState([])
     <>
       <Navbar user={user} setUser={setUser} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
-      <Outlet context={{isLoggedIn, setIsLoggedIn, user, setUser, pokeTeam, setPokeTeam, pokedex, setPokedex}}/>  
+      <Outlet context={{isLoggedIn, setIsLoggedIn, user, setUser, pokeTeam, setPokeTeam, pokedex, setPokedex}}/>
     </>
   )
 }
