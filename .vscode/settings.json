@@ -2,6 +2,9 @@
 	"cSpell.words": [
 		"authtoken",
 		"corsheaders",
-		"pokeclone"
+		"createsuperuser",
+		"pikachu",
+		"pokeclone",
+		"runserver"
 	]
 }
