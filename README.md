@@ -1,112 +1,125 @@
-# PokeClone Local App Setup
+# Deploying PokeClone App with Docker Compose
 
-This document provides a detailed guide for setting up and running the PokeClone application, which includes a Django backend and a React frontend created with Vite.
+This README outlines the steps needed to deploy the PokeClone application using Docker Compose, including setting up the environment, building, and running the containers.
 
 ## Prerequisites
 
-Before you begin, ensure you have the following installed on your system:
+- Docker and Docker Compose installed on your system.
+- Clone or download the PokeClone application source code to your local machine.
 
-- Python 3
-- pip (Python package manager)
-- Node.js and npm (Node package manager)
-- PostgreSQL
+## Configuration
 
-## Setup Instructions
+1. **Environment File Setup**: Create a `.env` file in the `back_end` directory of your project. This file will store environment variables required by the Django application.
 
-### Setting Up the Backend
+    ```plaintext
+    DJANGO_KEY='pikachu'
+    ```
 
-1. **Create and Activate a Python Virtual Environment**
+    Replace `'pikachu'` with your actual Django secret key or keep it as is for testing purposes.
 
-   Navigate to the `back_end` directory of the project and run the following commands to create a Python virtual environment and activate it:
+2. **Docker Compose File**: Ensure your `docker-compose.yml` file is properly set up to define services for the front end, back end, and database. It should look something like this:
 
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
+    ```yaml
+    version: '3.8'
 
-   This creates an isolated environment for Python projects, ensuring that each project has its own dependencies, separate from other projects.
+    services:
+      database:
+        image: postgres:latest
+        volumes:
+          - postgres_data:/var/lib/postgresql/data
+          - postgres_config:/etc/postgresql
+        environment:
+          POSTGRES_DB: pokeclone_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        networks:
+          - database_network
+        healthcheck:
+          test: ["CMD", "pg_isready", "-d", "pokeclone_db", "-U", "postgres"]
+          timeout: 20s
+          retries: 10
 
-2. **Install Dependencies**
+      backend:
+        build: ./back_end
+        command: python manage.py runserver 0.0.0.0:8000
+        volumes:
+          - ./back_end:/app
+        ports:
+          - "8000:8000"
+        environment:
+          - DJANGO_KEY=pikachu
+          - DATABASE_HOST=database
+          - DATABASE_NAME=pokeclone_db
+          - DATABASE_USER=postgres
+          - DATABASE_PASSWORD=postgres
+        depends_on:
+          database:
+            condition: service_healthy
+        networks:
+          - pokeclone_network
+          - database_network
+        env_file:
+          - ./back_end/.env
 
-   Install the required Python packages for the backend:
+      frontend:
+        build: ./front_end
+        ports:
+          - "8080:80"
+        depends_on:
+          - backend
+        networks:
+          - pokeclone_network
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+    networks:
+      pokeclone_network:
+        driver: bridge
+      database_network:
+        driver: bridge
 
-   `requirements.txt` contains a list of packages necessary for the project to run.
+    volumes:
+      postgres_data:
+      postgres_config:
+    ```
 
-3. **Create the Database**
+## Deployment Steps
 
-   Log in to PostgreSQL and create the database required by Django:
+1. **Build and Start Containers**: Navigate to the root directory of the PokeClone project where your `docker-compose.yml` file is located. Run the following command to build and start all services defined in the Docker Compose file:
 
-   ```sql
-   psql -U postgres
-   CREATE DATABASE pokeclone_db;
-   \q
-   ```
+    ```bash
+    docker-compose up -d --build
+    ```
 
-   Replace `postgres` with your PostgreSQL username if different.
+    The `-d` flag runs the containers in the background. The `--build` option builds the images before starting the containers.
 
-4. **Configure Environment Variables**
+2. **Applying Database Migrations**: After the containers are up and running, apply the Django database migrations to set up the database schema:
 
-   Create a `.env` file in the `back_end` directory to store environment variables:
+    ```bash
+    docker-compose exec backend python manage.py migrate
+    ```
 
-   ```bash
-   echo "DJANGO_KEY='pikachu'" > .env
-   ```
+3. **Create a Django Superuser**: Optionally, if you need to access the Django admin, create a superuser account:
 
-   Replace `'pikachu'` with your actual Django secret key.
+    ```bash
+    docker-compose exec backend python manage.py createsuperuser
+    ```
 
-5. **Apply Database Migrations**
+    Follow the prompts to set up the superuser account.
 
-   Apply migrations to set up your database schema:
+## Accessing the Application
 
-   ```bash
-   python3 manage.py migrate
-   ```
+- **Front End**: The front-end application will be available at `http://localhost:8080`.
+- **Back End/Django Admin**: Access the Django admin interface at `http://localhost:8000/admin` using the superuser credentials you created.
 
-6. **Create a Django Superuser**
+## Stopping the Application
 
-   Create an administrative user for the Django admin interface:
+To stop and remove the containers, networks, and volumes created by `docker-compose up`, run:
 
-   ```bash
-   python3 manage.py createsuperuser
-   ```
+```bash
+docker-compose down -v
+```
 
-   Follow the prompts to set up the superuser account.
+The `-v` flag is used to remove the volumes, ensuring a clean state.
 
-7. **Run the Backend Server**
+## Conclusion
 
-   Start the Django development server:
-
-   ```bash
-   python3 manage.py runserver
-   ```
-
-   The backend API will be available at `http://127.0.0.1:8000`.
-
-### Setting Up the Frontend
-
-1. **Install Frontend Dependencies**
-
-   Navigate to the `front_end` directory and install the necessary packages:
-
-   ```bash
-   npm install
-   ```
-
-2. **Run the Development Server**
-
-   Start the Vite development server for the frontend:
-
-   ```bash
-   npm run dev
-   ```
-
-   The frontend will be available at `http://localhost:5173`.
-
-## Usage
-
-- Access the Django admin interface at `http://127.0.0.1:8000/admin` using the superuser credentials you created.
-- Interact with the frontend application in your browser at `http://localhost:5173`.
+You've now deployed the PokeClone application using Docker Compose, including setting up a PostgreSQL database, a Django back end, and a React front end. This setup provides a solid foundation for development and testing.

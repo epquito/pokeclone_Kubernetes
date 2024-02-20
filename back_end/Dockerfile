@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1
 # Use an official Python runtime as a parent image
 FROM python:3-slim
 
@@ -16,9 +17,9 @@ EXPOSE 8000
 # Start the Django app using the built-in server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
-# Build and push Docker image
+# Build and push Docker image:
 # docker build -t slamoureux/pokeclone-back-end:v1 .
 # docker push slamoureux/pokeclone-back-end:v1
 
-# Run the backend container
+# Run the backend container:
 # docker run -itd -p 8000:8000 --rm --name pokeclone-be slamoureux/pokeclone-back-end:v1

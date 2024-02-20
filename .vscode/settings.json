@@ -3,6 +3,7 @@
 		"authtoken",
 		"corsheaders",
 		"createsuperuser",
+		"healthcheck",
 		"pikachu",
 		"pokeclone",
 		"runserver"

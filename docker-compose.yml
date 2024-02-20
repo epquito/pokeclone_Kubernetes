@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - postgres_config:/etc/postgresql
+    environment:
+      POSTGRES_DB: pokeclone_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - database_network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "pokeclone_db", "-U", "postgres"]
+      timeout: 20s
+      retries: 10
+
+  backend:
+    build: ./back_end
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./back_end:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_KEY=pikachu
+      - DATABASE_HOST=database
+      - DATABASE_NAME=pokeclone_db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+    depends_on:
+      database:
+        condition: service_healthy
+    networks:
+      - pokeclone_network
+      - database_network
+    env_file:
+      - ./back_end/.env
+
+  frontend:
+    build: ./front_end
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - pokeclone_network
+
+networks:
+  pokeclone_network:
+    driver: bridge
+  database_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  postgres_config:
+
+# Run docker compose:
+# docker compose up -d
+
+# Apply Migrations:
+# docker compose exec backend python manage.py migrate
+
+# Create Django Superuser (optional):
+# docker compose exec backend python manage.py createsuperuser
+
+# Restart backend container:
+# docker compose restart backend
