@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # Use an official Python runtime as a parent image
-FROM python:3-slim
+FROM python:3-alpine
 
 WORKDIR /app
 
@@ -10,6 +10,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy project
 COPY . /app/
+
+# Environment variables (for documentation, set actual values at runtime)
+ENV DJANGO_KEY="pikachu"
 
 # Expose port 8000 to access Django app
 EXPOSE 8000

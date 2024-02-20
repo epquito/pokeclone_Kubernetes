@@ -86,7 +86,7 @@ This README outlines the steps needed to deploy the PokeClone application using 
 1. **Build and Start Containers**: Navigate to the root directory of the PokeClone project where your `docker-compose.yml` file is located. Run the following command to build and start all services defined in the Docker Compose file:
 
     ```bash
-    docker-compose up -d --build
+    docker compose up -d --build
     ```
 
     The `-d` flag runs the containers in the background. The `--build` option builds the images before starting the containers.
@@ -94,13 +94,13 @@ This README outlines the steps needed to deploy the PokeClone application using 
 2. **Applying Database Migrations**: After the containers are up and running, apply the Django database migrations to set up the database schema:
 
     ```bash
-    docker-compose exec backend python manage.py migrate
+    docker compose exec backend python manage.py migrate
     ```
 
 3. **Create a Django Superuser**: Optionally, if you need to access the Django admin, create a superuser account:
 
     ```bash
-    docker-compose exec backend python manage.py createsuperuser
+    docker compose exec backend python manage.py createsuperuser
     ```
 
     Follow the prompts to set up the superuser account.
@@ -108,7 +108,7 @@ This README outlines the steps needed to deploy the PokeClone application using 
 4. **Restart the Backend Container**: After applying migrations and creating a superuser, it's a good practice to restart the backend container to ensure all changes are correctly loaded:
 
     ```bash
-    docker-compose restart backend
+    docker compose restart backend
     ```
 
 ## Accessing the Application
@@ -121,7 +121,7 @@ This README outlines the steps needed to deploy the PokeClone application using 
 To stop and remove the containers, networks, and volumes created by `docker-compose up`, run:
 
 ```bash
-docker-compose down -v
+docker compose down -v
 ```
 
 The `-v` flag is used to remove the volumes, ensuring a clean state.
