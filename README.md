@@ -105,6 +105,12 @@ This README outlines the steps needed to deploy the PokeClone application using 
 
     Follow the prompts to set up the superuser account.
 
+4. **Restart the Backend Container**: After applying migrations and creating a superuser, it's a good practice to restart the backend container to ensure all changes are correctly loaded:
+
+    ```bash
+    docker-compose restart backend
+    ```
+
 ## Accessing the Application
 
 - **Front End**: The front-end application will be available at `http://localhost:8080`.
