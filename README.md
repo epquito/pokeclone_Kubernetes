@@ -1,4 +1,4 @@
-# PokeClone Local App Setup
+# PokeClone Local App Deployment
 
 This document provides a detailed guide for setting up and running the PokeClone application, which includes a Django backend and a React frontend created with Vite.
 
