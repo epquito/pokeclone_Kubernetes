@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1
+
 # Step 1: Build the React application
 FROM node:latest as build-stage
 WORKDIR /app
