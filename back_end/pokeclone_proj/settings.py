@@ -95,11 +95,11 @@ WSGI_APPLICATION = "pokeclone_proj.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "pokeclone_db",
-        "USER": "postgres",
-        "PASSWORD": "postgres",
-        "HOST": "database",
-        "PORT": "5432",
+        "NAME": os.getenv("DB_NAME", "pokeclone_db"),
+        "USER": os.getenv("DB_USER", "postgres"),
+        "PASSWORD": os.getenv("DB_PASSWORD", "postgres"),
+        "HOST": os.getenv("DB_HOST", "pokeclone-db-service"),
+        "PORT": os.getenv("DB_PORT", "5432"),
     }
 }
 

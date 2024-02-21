@@ -1,131 +1,85 @@
-# Deploying PokeClone App with Docker Compose
+# Deploying with Minikube
 
-This README outlines the steps needed to deploy the PokeClone application using Docker Compose, including setting up the environment, building, and running the containers.
+This branch contains configurations and instructions for deploying the application stack on Minikube, a local Kubernetes environment. It's designed to simulate a Kubernetes cluster on a local machine, making it ideal for development and testing.
+
+## Overview
+
+The project structure organizes Kubernetes manifests into numbered directories to dictate the order of resource creation:
+
+- `1-namespace`: Namespace creation to isolate resources.
+- `2-quota`: Resource quotas to manage compute resources within the namespace.
+- `3-database`: PostgreSQL database deployment, including ConfigMaps for configuration, Secrets for sensitive data, and both Persistent Volumes (PV) and Persistent Volume Claims (PVC) for data persistence.
+- `4-backend`: Django backend deployment, including ConfigMaps, Secrets, and a Service to expose the backend within the cluster.
+- `5-frontend`: Frontend deployment using a NodePort Service to access the application via Minikube.
 
 ## Prerequisites
 
-- Docker and Docker Compose installed on your system.
-- Clone or download the PokeClone application source code to your local machine.
-
-## Configuration
-
-1. **Environment File Setup**: Create a `.env` file in the `back_end` directory of your project. This file will store environment variables required by the Django application.
-
-    ```plaintext
-    DJANGO_KEY='pikachu'
-    ```
-
-    Replace `'pikachu'` with your actual Django secret key or keep it as is for testing purposes.
-
-2. **Docker Compose File**: Ensure your `docker-compose.yml` file is properly set up to define services for the front end, back end, and database. It should look something like this:
-
-    ```yaml
-    version: '3.8'
-
-    services:
-      database:
-        image: postgres:latest
-        volumes:
-          - postgres_data:/var/lib/postgresql/data
-          - postgres_config:/etc/postgresql
-        environment:
-          POSTGRES_DB: pokeclone_db
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-        networks:
-          - database_network
-        healthcheck:
-          test: ["CMD", "pg_isready", "-d", "pokeclone_db", "-U", "postgres"]
-          timeout: 20s
-          retries: 10
-
-      backend:
-        build: ./back_end
-        command: python manage.py runserver 0.0.0.0:8000
-        volumes:
-          - ./back_end:/app
-        ports:
-          - "8000:8000"
-        environment:
-          - DJANGO_KEY=pikachu
-          - DATABASE_HOST=database
-          - DATABASE_NAME=pokeclone_db
-          - DATABASE_USER=postgres
-          - DATABASE_PASSWORD=postgres
-        depends_on:
-          database:
-            condition: service_healthy
-        networks:
-          - pokeclone_network
-          - database_network
-        env_file:
-          - ./back_end/.env
-
-      frontend:
-        build: ./front_end
-        ports:
-          - "8080:80"
-        depends_on:
-          - backend
-        networks:
-          - pokeclone_network
-
-    networks:
-      pokeclone_network:
-        driver: bridge
-      database_network:
-        driver: bridge
-
-    volumes:
-      postgres_data:
-      postgres_config:
-    ```
+- **Minikube**: Ensure Minikube is installed and running on your local machine. Use `minikube start` to start a Minikube instance.
+- **kubectl**: The Kubernetes command-line tool, `kubectl`, should be installed and configured to communicate with your Minikube cluster.
 
 ## Deployment Steps
 
-1. **Build and Start Containers**: Navigate to the root directory of the PokeClone project where your `docker-compose.yml` file is located. Run the following command to build and start all services defined in the Docker Compose file:
+1. **Start Minikube**:
 
-    ```bash
-    docker compose up -d --build
-    ```
+   ```bash
+   minikube start
+   ```
 
-    The `-d` flag runs the containers in the background. The `--build` option builds the images before starting the containers.
+2. **Apply Namespace and Quotas**:
 
-2. **Applying Database Migrations**: After the containers are up and running, apply the Django database migrations to set up the database schema:
+   Navigate to the project root and apply the namespace and quota configurations.
 
-    ```bash
-    docker compose exec backend python manage.py migrate
-    ```
+   ```bash
+   kubectl apply -f 1-namespace/
+   kubectl apply -f 2-quota/
+   ```
 
-3. **Create a Django Superuser**: Optionally, if you need to access the Django admin, create a superuser account:
+3. **Deploy the Database**:
 
-    ```bash
-    docker compose exec backend python manage.py createsuperuser
-    ```
+   Deploy the PostgreSQL database components.
 
-    Follow the prompts to set up the superuser account.
+   ```bash
+   kubectl apply -f 3-database/
+   ```
 
-4. **Restart the Backend Container**: After applying migrations and creating a superuser, it's a good practice to restart the backend container to ensure all changes are correctly loaded:
+4. **Deploy the Backend**:
 
-    ```bash
-    docker compose restart backend
-    ```
+   Once the database is up, deploy the Django backend application.
 
-## Accessing the Application
+   ```bash
+   kubectl apply -f 4-backend/
+   ```
 
-- **Front End**: The front-end application will be available at `http://localhost:8080`.
-- **Back End/Django Admin**: Access the Django admin interface at `http://localhost:8000/admin` using the superuser credentials you created.
+5. **Deploy the Frontend**:
 
-## Stopping the Application
+   Finally, deploy the frontend application.
 
-To stop and remove the containers, networks, and volumes created by `docker-compose up`, run:
+   ```bash
+   kubectl apply -f 5-frontend/
+   ```
 
-```bash
-docker compose down -v
-```
+6. **Accessing the Application**:
 
-The `-v` flag is used to remove the volumes, ensuring a clean state.
+   - To access the frontend application, use the following command to get the URL:
 
-## Conclusion
+     ```bash
+     minikube service pokeclone-frontend --url -n pokeclone
+     ```
 
-You've now deployed the PokeClone application using Docker Compose, including setting up a PostgreSQL database, a Django back end, and a React front end. This setup provides a solid foundation for development and testing.
+   - Use the provided URL in your web browser to access the frontend.
+
+## Managing the Application
+
+- **View Logs**:
+  To view the logs of a specific pod, first list all pods with `kubectl get pods -n <namespace>`, then use `kubectl logs <pod-name> -n <namespace>`.
+
+- **Stopping Minikube**:
+  To stop Minikube and preserve your environment for later, use `minikube stop`.
+
+- **Deleting Minikube**:
+  If you wish to completely remove all resources associated with Minikube, use `minikube delete`.
+
+## Notes
+
+- This setup is intended for development and testing purposes. For production deployments, consider using a managed Kubernetes service provided by cloud providers like AWS EKS, Google GKE, or Azure AKS.
+- Remember to monitor resource usage within Minikube to avoid over consumption of your local machine's resources.

@@ -13,7 +13,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # Environment variables (for documentation, set actual values at runtime)
-ENV DJANGO_KEY="pikachu"
+ENV DJANGO_KEY=pikachu \
+    DB_NAME=pokeclone_db \
+    DB_USER=postgres \
+    DB_PASSWORD=postgres \
+    DB_HOST=database \
+    DB_PORT=5432
 
 # Expose port 8000 to access Django app
 EXPOSE 8000

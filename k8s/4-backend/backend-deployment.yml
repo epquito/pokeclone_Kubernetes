@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+  namespace: pokeclone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pokeclone-backend
+  template:
+    metadata:
+      labels:
+        app: pokeclone-backend
+    spec:
+      containers:
+      - name: pokeclone-backend
+        image: slamoureux/pokeclone-back-end:latest
+        ports:
+        - containerPort: 8000
+        env:
+          - name: DJANGO_KEY
+            valueFrom:
+              secretKeyRef:
+                name: backend-secrets
+                key: DJANGO_KEY
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: backend-configmap
+                key: DB_HOST
+          - name: DB_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: backend-configmap
+                key: DB_PORT
+          - name: DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: backend-configmap
+                key: DB_NAME
+          - name: DB_USER
+            valueFrom:
+              configMapKeyRef:
+                name: backend-configmap
+                key: DB_USER
+          - name: DB_PASS
+            valueFrom:
+              secretKeyRef:
+                name: backend-secrets
+                key: DB_PASS
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"

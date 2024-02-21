@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: pokeclone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pokeclone-frontend
+  template:
+    metadata:
+      labels:
+        app: pokeclone-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: slamoureux/pokeclone-front-end:v1
+        ports:
+        - containerPort: 80

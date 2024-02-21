@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-configmap
+  namespace: pokeclone
+data:
+  DB_NAME: "pokeclone_db"
+  DB_USER: "postgres"
+  DB_HOST: "pokeclone-db-service"
+  DB_PORT: "5432"

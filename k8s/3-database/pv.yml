@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-pv
+  namespace: pokeclone
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce  # The volume can be mounted as read-write by a single node.
+  hostPath:
+    path: /mnt/data/postgres  # The path on the host where your data will be stored.

@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  namespace: pokeclone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pokeclone-postgres
+  template:
+    metadata:
+      labels:
+        app: pokeclone-postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:latest
+        ports:
+        - containerPort: 5432
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-configmap
+              key: DB_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: DB_PASS
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-configmap
+              key: DB_NAME
+          - name: PGDATA
+            value: /var/lib/postgresql/data/pgdata
+        volumeMounts:
+        - name: postgres-data
+          mountPath: /var/lib/postgresql/data
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        startupProbe: # Ensures that the application has enough time to start up before the liveness or readiness checks start.
+          exec:
+            command:
+            - pg_isready
+            - -q
+            - -d
+            - twoge
+            - -U
+            - twoge
+          initialDelaySeconds: 10 # how many seconds to wait to start the probe after the container starts.
+          periodSeconds: 5  # how often to perform the probe.
+          failureThreshold: 30 # How many times to retry the probe before giving up. Allows up to 150 seconds for startup.
+        readinessProbe: # readiness Checks if the pod is ready to serve traffic.
+          exec:
+            command:
+            - pg_isready
+            - -q
+            - -d
+            - twoge
+            - -U
+            - twoge
+          initialDelaySeconds: 5 # how many seconds to wait to start the probe after the container starts.
+          periodSeconds: 10 # how often to perform the probe.
+          timeoutSeconds: 5 # the number of seconds after which the probe times out.
+          successThreshold: 1  # The minimum consecutive successes for the probe to be considered successful after having failed.
+          failureThreshold: 3  # How many times to retry the probe before giving up.
+      volumes:
+      - name: postgres-data
+        persistentVolumeClaim:
+          claimName: postgres-pvc
