@@ -27,7 +27,7 @@ The project structure organizes Kubernetes manifests into numbered directories t
 
 2. **Apply Namespace and Quotas**:
 
-   Navigate to the project root and apply the namespace and quota configurations.
+   Navigate to the `k8s` directory and apply the namespace and quota configurations.
 
    ```bash
    kubectl apply -f 1-namespace/
