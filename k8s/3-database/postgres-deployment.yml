@@ -34,8 +34,8 @@ spec:
             configMapKeyRef:
               name: postgres-configmap
               key: DB_NAME
-          - name: PGDATA
-            value: /var/lib/postgresql/data/pgdata
+        - name: PGDATA # This line should start directly below the "env:" line
+          value: /var/lib/postgresql/data/pgdata
         volumeMounts:
         - name: postgres-data
           mountPath: /var/lib/postgresql/data
@@ -46,15 +46,16 @@ spec:
           limits:
             memory: "1Gi"
             cpu: "500m"
-        startupProbe: # Ensures that the application has enough time to start up before the liveness or readiness checks start.
+        # Ensures that the application has enough time to start up before the liveness or readiness checks start.
+        startupProbe:
           exec:
             command:
             - pg_isready
-            - -q
-            - -d
-            - pokeclone_db
-            - -U
-            - postgres
+            - "-q"
+            - "-d"
+            - "${POSTGRES_DB}"
+            - "-U"
+            - "${POSTGRES_USER}"
           initialDelaySeconds: 10 # how many seconds to wait to start the probe after the container starts.
           periodSeconds: 5  # how often to perform the probe.
           failureThreshold: 30 # How many times to retry the probe before giving up. Allows up to 150 seconds for startup.
@@ -62,11 +63,11 @@ spec:
           exec:
             command:
             - pg_isready
-            - -q
-            - -d
-            - pokeclone_db
-            - -U
-            - postgres
+            - "-q"
+            - "-d"
+            - "${POSTGRES_DB}"
+            - "-U"
+            - "${POSTGRES_USER}"
           initialDelaySeconds: 5 # how many seconds to wait to start the probe after the container starts.
           periodSeconds: 10 # how often to perform the probe.
           timeoutSeconds: 5 # the number of seconds after which the probe times out.

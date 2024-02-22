@@ -44,7 +44,7 @@ spec:
               configMapKeyRef:
                 name: backend-configmap
                 key: DB_USER
-          - name: DB_PASS
+          - name: DB_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: backend-secrets

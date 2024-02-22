@@ -58,16 +58,6 @@ The project structure organizes Kubernetes manifests into numbered directories t
    kubectl apply -f 5-frontend/
    ```
 
-6. **Accessing the Application**:
-
-   - To access the frontend application, use the following command to get the URL:
-
-     ```bash
-     minikube service pokeclone-frontend --url -n pokeclone
-     ```
-
-   - Use the provided URL in your web browser to access the frontend.
-
 ## Managing Django Migrations and Superuser Creation
 
 After your backend deployment is up and running, you will need to apply Django migrations and create a superuser for admin access.
@@ -89,6 +79,22 @@ kubectl exec -it $(kubectl get pod -l app=pokeclone-backend -n pokeclone -o json
 ```
 
 Follow the prompts to set up the superuser account.
+
+## Accessing the Application
+
+With the database configured and the superuser created, you're now ready to access the application.
+
+- **Frontend Application**:
+    To open the frontend application in your browser, use the `minikube service` command:
+
+    ```bash
+    minikube service frontend-service --url -n pokeclone
+    ```
+
+    This command will output the URL to access the frontend service. Copy and paste it into your browser to view the application.
+
+- **Django Admin Interface**:
+    Access the Django admin interface by navigating to `/admin` on your backend service's URL. Use the superuser credentials you created earlier to log in.
 
 ## Managing the Application
 
