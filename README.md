@@ -107,7 +107,11 @@ With the database configured and the superuser created, you're now ready to acce
 ## Managing the Application
 
 - **View Logs**:
-  To view the logs of a specific pod, first list all pods with `kubectl get pods -n <namespace>`, then use `kubectl logs <pod-name> -n <namespace>`.
+  To view the logs of a specific pod, first list all pods with `kubectl get pods -n <namespace>`, then use:
+
+    ```bash
+    kubectl logs <pod-name> -n <namespace>
+    ```
 
 - **Executing Commands Inside a Pod**: To execute commands inside a pod, such as accessing a Django or database shell, use:
 
