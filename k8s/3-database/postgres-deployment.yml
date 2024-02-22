@@ -34,7 +34,7 @@ spec:
             configMapKeyRef:
               name: postgres-configmap
               key: DB_NAME
-        - name: PGDATA # This line should start directly below the "env:" line
+        - name: PGDATA
           value: /var/lib/postgresql/data/pgdata
         volumeMounts:
         - name: postgres-data
