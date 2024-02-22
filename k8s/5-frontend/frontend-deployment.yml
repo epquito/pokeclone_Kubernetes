@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: slamoureux/pokeclone-front-end:v1
+        image: slamoureux/pokeclone-front-end:minikube
         ports:
         - containerPort: 80
         resources:
