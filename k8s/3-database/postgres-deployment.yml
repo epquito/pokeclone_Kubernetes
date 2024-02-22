@@ -52,9 +52,9 @@ spec:
             - pg_isready
             - -q
             - -d
-            - twoge
+            - pokeclone_db
             - -U
-            - twoge
+            - postgres
           initialDelaySeconds: 10 # how many seconds to wait to start the probe after the container starts.
           periodSeconds: 5  # how often to perform the probe.
           failureThreshold: 30 # How many times to retry the probe before giving up. Allows up to 150 seconds for startup.
@@ -64,9 +64,9 @@ spec:
             - pg_isready
             - -q
             - -d
-            - twoge
+            - pokeclone_db
             - -U
-            - twoge
+            - postgres
           initialDelaySeconds: 5 # how many seconds to wait to start the probe after the container starts.
           periodSeconds: 10 # how often to perform the probe.
           timeoutSeconds: 5 # the number of seconds after which the probe times out.

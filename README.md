@@ -68,6 +68,28 @@ The project structure organizes Kubernetes manifests into numbered directories t
 
    - Use the provided URL in your web browser to access the frontend.
 
+## Managing Django Migrations and Superuser Creation
+
+After your backend deployment is up and running, you will need to apply Django migrations and create a superuser for admin access.
+
+### Apply Django Migrations
+
+Run the following command to apply migrations:
+
+```bash
+kubectl exec -it $(kubectl get pod -l app=pokeclone-backend -n pokeclone -o jsonpath="{.items[0].metadata.name}") -n pokeclone -- python manage.py migrate
+```
+
+### Create Django Superuser
+
+To create a superuser, run:
+
+```bash
+kubectl exec -it $(kubectl get pod -l app=pokeclone-backend -n pokeclone -o jsonpath="{.items[0].metadata.name}") -n pokeclone -- python manage.py createsuperuser
+```
+
+Follow the prompts to set up the superuser account.
+
 ## Managing the Application
 
 - **View Logs**:
