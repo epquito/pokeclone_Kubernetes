@@ -27,14 +27,14 @@ spec:
             cpu: "500m"
         startupProbe:
           httpGet:
-            path: /index.html
+            path: /
             port: 80
-          initialDelaySeconds: 10
+          initialDelaySeconds: 15
           periodSeconds: 5
           failureThreshold: 30
         readinessProbe:
           httpGet:
-            path: /index.html
+            path: /
             port: 80
           initialDelaySeconds: 15
           periodSeconds: 5
