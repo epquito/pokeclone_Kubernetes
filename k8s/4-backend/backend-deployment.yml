@@ -16,6 +16,7 @@ spec:
       containers:
       - name: pokeclone-backend
         image: slamoureux/pokeclone-back-end:minikube
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
         env:
