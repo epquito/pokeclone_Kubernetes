@@ -58,6 +58,14 @@ The project structure organizes Kubernetes manifests into numbered directories t
    kubectl apply -f 5-frontend/
    ```
 
+## Confirm Successful Deployment
+
+After all the manifest files have been applied, check the status of the deployment to make sure everything is running as expected:
+
+```bash
+kubectl get all -n pokeclone
+```
+
 ## Managing Django Migrations and Superuser Creation
 
 After your backend deployment is up and running, you will need to apply Django migrations and create a superuser for admin access.
@@ -100,6 +108,12 @@ With the database configured and the superuser created, you're now ready to acce
 
 - **View Logs**:
   To view the logs of a specific pod, first list all pods with `kubectl get pods -n <namespace>`, then use `kubectl logs <pod-name> -n <namespace>`.
+
+- **Executing Commands Inside a Pod**: To execute commands inside a pod, such as accessing a Django or database shell, use `kubectl exec -it <pod-name> -n pokeclone -- /bin/bash`
+
+- **Checking Pod Status**: To check the status of all pods in the `pokeclone` namespace `kubectl get pods -n pokeclone`
+
+- **Describing Pod Details**: For detailed information about a specific pod, including events and configuration `kubectl describe pod <pod-name> -n pokeclone`
 
 - **Stopping Minikube**:
   To stop Minikube and preserve your environment for later, use `minikube stop`.
