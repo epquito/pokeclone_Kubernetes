@@ -10,7 +10,6 @@ The project structure organizes Kubernetes manifests into numbered directories t
 - `2-quota`: Resource quotas to manage compute resources within the namespace.
 - `3-database`: PostgreSQL database deployment, including ConfigMaps for configuration, Secrets for sensitive data, and both Persistent Volumes (PV) and Persistent Volume Claims (PVC) for data persistence.
 - `4-backend`: Django backend deployment, including ConfigMaps, Secrets, and a Service to expose the backend within the cluster.
-- `5-frontend`: Frontend deployment using a NodePort Service to access the application via Minikube.
 
 ## Prerequisites
 
@@ -31,6 +30,9 @@ The project structure organizes Kubernetes manifests into numbered directories t
 
    ```bash
    kubectl apply -f 1-namespace/
+   ```
+
+   ```bash
    kubectl apply -f 2-quota/
    ```
 
@@ -48,14 +50,6 @@ The project structure organizes Kubernetes manifests into numbered directories t
 
    ```bash
    kubectl apply -f 4-backend/
-   ```
-
-5. **Deploy the Frontend**:
-
-   Finally, deploy the frontend application.
-
-   ```bash
-   kubectl apply -f 5-frontend/
    ```
 
 ## Confirm Successful Deployment
@@ -96,7 +90,7 @@ With the database configured and the superuser created, you're now ready to acce
     To open the frontend application in your browser, use the `minikube service` command:
 
     ```bash
-    minikube service frontend-service --url -n pokeclone
+    minikube service backend-service --url -n pokeclone
     ```
 
     This command will output the URL to access the frontend service. Copy and paste it into your browser to view the application.
