@@ -109,17 +109,37 @@ With the database configured and the superuser created, you're now ready to acce
 - **View Logs**:
   To view the logs of a specific pod, first list all pods with `kubectl get pods -n <namespace>`, then use `kubectl logs <pod-name> -n <namespace>`.
 
-- **Executing Commands Inside a Pod**: To execute commands inside a pod, such as accessing a Django or database shell, use `kubectl exec -it <pod-name> -n pokeclone -- /bin/bash`
+- **Executing Commands Inside a Pod**: To execute commands inside a pod, such as accessing a Django or database shell, use:
 
-- **Checking Pod Status**: To check the status of all pods in the `pokeclone` namespace `kubectl get pods -n pokeclone`
+    ```bash
+    kubectl exec -it <pod-name> -n pokeclone -- /bin/bash
+    ```
 
-- **Describing Pod Details**: For detailed information about a specific pod, including events and configuration `kubectl describe pod <pod-name> -n pokeclone`
+- **Checking Pod Status**: To check the status of all pods in the `pokeclone` namespace:
+
+    ```bash
+    kubectl get pods -n pokeclone
+    ```
+
+- **Describing Pod Details**: For detailed information about a specific pod, including events and configuration:
+
+    ```bash
+    kubectl describe pod <pod-name> -n pokeclone
+    ```
 
 - **Stopping Minikube**:
-  To stop Minikube and preserve your environment for later, use `minikube stop`.
+  To stop Minikube and preserve your environment for later, use:
+
+    ```bash
+    minikube stop
+    ```
 
 - **Deleting Minikube**:
-  If you wish to completely remove all resources associated with Minikube, use `minikube delete`.
+  If you wish to completely remove all resources associated with Minikube, use:
+
+    ```bash
+    minikube delete
+    ```
 
 ## Notes
 
