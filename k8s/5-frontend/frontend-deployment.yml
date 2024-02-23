@@ -18,7 +18,7 @@ spec:
         image: slamoureux/pokeclone-front-end:latest
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 5173
         resources:
           requests:
             memory: "500Mi"
@@ -29,14 +29,14 @@ spec:
         startupProbe:
           httpGet:
             path: /
-            port: 80
+            port: 5173
           initialDelaySeconds: 15
           periodSeconds: 5
           failureThreshold: 30
         readinessProbe:
           httpGet:
             path: /
-            port: 80
+            port: 5173
           initialDelaySeconds: 15
           periodSeconds: 5
           successThreshold: 1
