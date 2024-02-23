@@ -4,6 +4,7 @@
 		"corsheaders",
 		"createsuperuser",
 		"healthcheck",
+		"nostatic",
 		"pikachu",
 		"pokeclone",
 		"runserver",
