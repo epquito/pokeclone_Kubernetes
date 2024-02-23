@@ -26,18 +26,18 @@ spec:
           limits:
             memory: "1Gi"
             cpu: "500m"
-        startupProbe:
-          httpGet:
-            path: /
-            port: 5173
-          initialDelaySeconds: 15
-          periodSeconds: 5
-          failureThreshold: 30
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 5173
-          initialDelaySeconds: 15
-          periodSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
+        # startupProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 5173
+        #   initialDelaySeconds: 15
+        #   periodSeconds: 5
+        #   failureThreshold: 30
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 5173
+        #   initialDelaySeconds: 15
+        #   periodSeconds: 5
+        #   successThreshold: 1
+        #   failureThreshold: 3
