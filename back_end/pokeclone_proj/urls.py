@@ -18,6 +18,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponse
+from django.conf import settings
+import os
+
+
+# Serve the index.html for the root URL
+def front_end(request):
+    index_file_path = os.path.join(settings.STATIC_ROOT, "index.html")
+    with open(index_file_path, "rb") as file:
+        return HttpResponse(file.read(), content_type="text/html")
 
 
 def health(request):
@@ -30,4 +39,7 @@ urlpatterns = [
     path("api/v1/pokemon/", include("pokemon_app.urls")),
     path("api/v1/team/", include("team_app.urls")),
     path("health/", health, name="health"),
+    path(
+        "", front_end, name="front_end"
+    ),  # Serve the frontend's index.html at the root URL
 ]
