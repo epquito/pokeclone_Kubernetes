@@ -18,6 +18,9 @@ COPY vite.config.js ./
 COPY --from=build-stage /app/node_modules /app/node_modules
 COPY --from=build-stage /app /app
 
+# Environment variables (for documentation, set actual values at runtime)
+ENV REACT_APP_API_BASE_URL=http://backend-service.pokeclone.svc.cluster.local:8000
+
 # Expose the port used by Vite
 EXPOSE 5173
 
@@ -26,8 +29,8 @@ CMD ["npm", "run", "dev"]
 
 
 # Build and push Docker image:
-# docker build -t slamoureux/pokeclone-front-end:latest .
-# docker push slamoureux/pokeclone-front-end:latest
+# docker build -t slamoureux/pokeclone-front-end:minikube .
+# docker push slamoureux/pokeclone-front-end:minikube
 
 # Run the frontend container:
-# docker run -itd -p 8080:80 --rm --name pokeclone-fe slamoureux/pokeclone-front-end:latest
+# docker run -itd -p 8080:80 --rm --name pokeclone-fe slamoureux/pokeclone-front-end:minikube

@@ -1,21 +1,25 @@
 import axios from "axios";
 
+// Use the environment variable, or default to a placeholder if not set
+const REACT_APP_API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://backend-service.pokeclone.svc.cluster.local:8000";
+
+// Create axios instances for different parts of your API using the base URL
 export const userApi = axios.create({
-    baseURL: "http://127.0.0.1:8000/api/v1/user/",
-  });
+  baseURL: `${REACT_APP_API_BASE_URL}/api/v1/user/`,
+});
 
 export const wildApi = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/v1/pokemon/wild/",
+  baseURL: `${REACT_APP_API_BASE_URL}/api/v1/pokemon/wild/`,
 });
 
 export const pokeApi = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/v1/pokemon/",
+  baseURL: `${REACT_APP_API_BASE_URL}/api/v1/pokemon/`,
 });
 
 export const teamApi = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/v1/team/",
+  baseURL: `${REACT_APP_API_BASE_URL}/api/v1/team/`,
 });
 
 export const pokedexApi = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/v1/pokemon/pokedex/",
+  baseURL: `${REACT_APP_API_BASE_URL}/api/v1/pokemon/pokedex/`,
 });

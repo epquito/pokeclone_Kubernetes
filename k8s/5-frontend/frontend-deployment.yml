@@ -15,10 +15,13 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: slamoureux/pokeclone-front-end:latest
+        image: slamoureux/pokeclone-front-end:minikube
         imagePullPolicy: Always
         ports:
         - containerPort: 5173
+        env:
+        - name: REACT_APP_API_BASE_URL
+          value: "http://backend-service.pokeclone.svc.cluster.local:8000"
         resources:
           requests:
             memory: "500Mi"
