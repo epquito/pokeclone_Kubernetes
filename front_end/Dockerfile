@@ -19,7 +19,7 @@ COPY --from=build-stage /app/node_modules /app/node_modules
 COPY --from=build-stage /app /app
 
 # Environment variables (for documentation, set actual values at runtime)
-ENV API_BASE_URL=http://backend-service.pokeclone.svc.cluster.local:8000
+ENV API_BASE_URL=http://192.168.49.2:30077
 
 # Expose the port used by Vite
 EXPOSE 5173

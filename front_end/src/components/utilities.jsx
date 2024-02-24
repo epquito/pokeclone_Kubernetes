@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Use the environment variable with Vite's import.meta.env, prefixed with VITE_
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://backend-service.pokeclone.svc.cluster.local:8000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://192.168.49.2:30077";
 
 // Create axios instances for different parts of your API using the base URL
 export const userApi = axios.create({
