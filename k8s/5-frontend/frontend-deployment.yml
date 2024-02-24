@@ -20,7 +20,7 @@ spec:
         ports:
         - containerPort: 5173
         env:
-        - name: REACT_APP_API_BASE_URL
+        - name: VITE_API_BASE_URL
           value: "http://backend-service.pokeclone.svc.cluster.local:8000"
         resources:
           requests:
