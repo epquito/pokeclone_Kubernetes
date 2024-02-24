@@ -31,6 +31,9 @@ The project structure organizes Kubernetes manifests into numbered directories t
 
    ```bash
    kubectl apply -f 1-namespace/
+   ```
+
+   ```bash
    kubectl apply -f 2-quota/
    ```
 
