@@ -4,7 +4,7 @@ import Sound from 'react-audio-player';
 import gameOverPageMusic from '/src/assets/BackgroundMusic/game-over.wav'
 
 const GameOverPage = () => {
-    
+
     const navigate = useNavigate()
 
     return(
@@ -14,11 +14,11 @@ const GameOverPage = () => {
                 <h1>TRASH</h1><h1>TRASH</h1><h1>TRASH</h1>
                 <img src="https://media.giphy.com/media/WLXO8OZmq0JK8/giphy.gif"/>
                 <h1>TRASH</h1><h1>TRASH</h1><h1>TRASH</h1>
-            
+
             <div className="gameover_buttons_div">
                 <Button className='gameover_buttons' onClick={()=>navigate('/pokecenter')}>Try Again?</Button>
                     <Button className='gameover_buttons' onClick={()=>navigate('/')}>New Game</Button>
-            </div>  
+            </div>
             </div>
         </div>
     )

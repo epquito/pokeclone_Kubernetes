@@ -6,7 +6,7 @@ import waves from '/src/assets/BackgroundMusic/waves-on-beach.wav'
 
 const LandingPage = () => {
 
-  
+
     return (
         <div className='full_page_div' id='landing_main_div'>
             <img src={pokeLogo} id='landing_logo'/>

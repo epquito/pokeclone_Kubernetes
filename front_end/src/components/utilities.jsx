@@ -1,7 +1,10 @@
 import axios from "axios";
 
+// Later change to an env var that can be injected at build time using CI/CD.
+// This makes it so there can be different variables for different environments.
 // Use the environment variable with Vite's import.meta.env, prefixed with VITE_
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://192.168.49.2:30077";
+
+const API_BASE_URL = "http://backend-service:8000";
 
 // Create axios instances for different parts of your API using the base URL
 export const userApi = axios.create({

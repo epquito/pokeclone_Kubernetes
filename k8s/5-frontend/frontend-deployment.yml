@@ -18,10 +18,7 @@ spec:
         image: slamoureux/pokeclone-front-end:eks
         imagePullPolicy: Always
         ports:
-        - containerPort: 5173
-        env:
-        - name: VITE_API_BASE_URL
-          value: "http://192.168.49.2:30077"
+        - containerPort: 80
         resources:
           requests:
             memory: "500Mi"
@@ -32,14 +29,14 @@ spec:
         startupProbe:
           httpGet:
             path: /
-            port: 5173
+            port: 80
           initialDelaySeconds: 15
           periodSeconds: 5
           failureThreshold: 30
         readinessProbe:
           httpGet:
             path: /
-            port: 5173
+            port: 80
           initialDelaySeconds: 15
           periodSeconds: 5
           successThreshold: 1

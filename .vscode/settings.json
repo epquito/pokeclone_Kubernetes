@@ -1,13 +1,20 @@
 {
 	"cSpell.words": [
 		"authtoken",
+		"battlemusic",
 		"corsheaders",
 		"createsuperuser",
 		"healthcheck",
+		"Loopable",
+		"pfranzen",
 		"pikachu",
+		"pokecenter",
 		"pokeclone",
 		"pokedex",
+		"pokemons",
 		"runserver",
-		"VITE"
+		"signup",
+		"VITE",
+		"wildapi"
 	]
 }
