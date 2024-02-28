@@ -35,17 +35,17 @@ spec:
               name: postgres-configmap
               key: DB_NAME
         - name: PGDATA
-          value: /var/lib/postgresql/data/pgdata
+          value: /var/lib/postgresql_custom/data/pgdata
         volumeMounts:
         - name: postgres-data
-          mountPath: /var/lib/postgresql/data
-        resources:
-          requests:
-            memory: "500Mi"
-            cpu: "250m"
-          limits:
-            memory: "1Gi"
-            cpu: "500m"
+          mountPath: /var/lib/postgresql_custom/data
+        # resources:
+        #   requests:
+        #     memory: "500Mi"
+        #     cpu: "250m"
+        #   limits:
+        #     memory: "1Gi"
+        #     cpu: "500m"
         # Ensures that the application has enough time to start up before the liveness or readiness checks start.
         startupProbe:
           exec:
