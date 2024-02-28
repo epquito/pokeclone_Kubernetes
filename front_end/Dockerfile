@@ -15,8 +15,8 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 
 # Build and push Docker image:
-# docker build -t slamoureux/pokeclone-front-end:v1 .
-# docker push slamoureux/pokeclone-front-end:v1
+# docker build -t slamoureux/pokeclone-front-end:compose .
+# docker push slamoureux/pokeclone-front-end:compose
 
 # Run the frontend container:
-# docker run -itd -p 8080:80 --rm --name pokeclone-fe slamoureux/pokeclone-front-end:v1
+# docker run -itd -p 8080:80 --rm --name pokeclone-fe slamoureux/pokeclone-front-end:compose
