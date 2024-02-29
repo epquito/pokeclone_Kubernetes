@@ -5,8 +5,8 @@ metadata:
   namespace: pokeclone
 spec:
   hard:
-    pods: "8"
-    requests.cpu: "500m" # Total amount of CPU that can be requested in the namespace.
+    pods: "4"
+    requests.cpu: "1" # Total amount of CPU that can be requested in the namespace.
     requests.memory: 1Gi # Total amount of memory that can be requested
-    limits.cpu: "1" # Set to max limit of t2.small
-    limits.memory: 2Gi # Set to max limit of t2.small
+    limits.cpu: "2"
+    limits.memory: 2Gi

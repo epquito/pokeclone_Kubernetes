@@ -21,11 +21,11 @@ spec:
         - containerPort: 80
         resources:
           requests:
-            memory: "250Mi"
+            memory: "200Mi"
             cpu: "100m" # 0.10 vCPU
           limits:
-            memory: "500Mi"
-            cpu: "200m"
+            memory: "400Mi"
+            cpu: "150m"
         startupProbe:
           httpGet:
             path: /

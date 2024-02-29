@@ -41,11 +41,11 @@ spec:
           mountPath: /var/lib/postgresql_custom/data
         resources:
           requests:
-            memory: "500Mi"
-            cpu: "250m" # 1/4 of a core
+            memory: "200Mi"
+            cpu: "100m"
           limits:
-            memory: "1Gi"
-            cpu: "500m" # 1/2 of a core
+            memory: "400Mi"
+            cpu: "150m" # 1/2 of a core
         startupProbe: # Ensures that the application has enough time to start up before the liveness or readiness checks start.
           exec:
             command:
