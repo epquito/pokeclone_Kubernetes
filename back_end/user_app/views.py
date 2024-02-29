@@ -17,55 +17,68 @@ from pokemon_app.models import Pokemon
 
 # Create your views here.
 
+
 class Sign_up(APIView):
-  def post(self, request):
-    data = request.data 
-    data['username'] = request.data.get('email')
-    
-    # Create a new user
-    new_user = User.objects.create_user(**data)
+    def post(self, request):
+        data = request.data
+        data["username"] = request.data.get("email")
 
-    # Create a new team for the user
-    new_team = Team.objects.create(user=new_user)
+        # Create a new user
+        new_user = User.objects.create_user(**data)
 
-    # Reset the Pokemon table (clear all records)
-    Pokemon.objects.all().delete()
+        # Create a new team for the user
+        new_team = Team.objects.create(user=new_user)
 
-    if new_user is not None: 
-      new_token = Token.objects.create(user = new_user)
-      login(request, new_user)
-      return Response({
-        "User": new_user.username,
-        "Token": new_token.key,
-        "TeamID": new_team.id
-      }, status = HTTP_201_CREATED)
-    
-    return Response("Something went wrong with sign up", status=HTTP_400_BAD_REQUEST)
+        # Reset the Pokemon table (clear all records)
+        Pokemon.objects.all().delete()
+
+        if new_user is not None:
+            new_token = Token.objects.create(user=new_user)
+            login(request, new_user)
+            return Response(
+                {
+                    "User": new_user.username,
+                    "Token": new_token.key,
+                    "TeamID": new_team.id,
+                },
+                status=HTTP_201_CREATED,
+            )
+
+        return Response(
+            "Something went wrong with sign up", status=HTTP_400_BAD_REQUEST
+        )
+
 
 class Log_in(APIView):
-  def post(self, request):
-    data = request.data.copy()
-    user = authenticate(username = data.get('email'), password = data.get('password'))
+    def post(self, request):
+        data = request.data.copy()
+        user = authenticate(username=data.get("email"), password=data.get("password"))
 
-    if user is not None:
-      token, created = Token.objects.get_or_create(user = user)
-      login(request, user)
-      return Response({
-        "User": user.username,
-        "Token": token.key
-      })
-    
-    return Response("Failed to log in", status=HTTP_400_BAD_REQUEST)
+        if user is not None:
+            token, created = Token.objects.get_or_create(user=user)
+            login(request, user)
+            return Response({"User": user.username, "Token": token.key})
+
+        return Response("Failed to log in", status=HTTP_400_BAD_REQUEST)
+
 
 class UserPermissions(APIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
+
 class Info(UserPermissions):
-  def get(self, request):
-    return Response({"user": request.user.username, "email":request.user.id, "TeamID":request.user.team.id})
+    def get(self, request):
+        return Response(
+            {
+                "user": request.user.username,
+                "email": request.user.id,
+                "TeamID": request.user.team.id,
+            }
+        )
+
 
 class Log_out(UserPermissions):
-  def post(self, request):
-    request.user.auth_token.delete()
-    return Response('User logged out', status=HTTP_204_NO_CONTENT)
+    def post(self, request):
+        request.user.auth_token.delete()
+        return Response("User logged out", status=HTTP_204_NO_CONTENT)

@@ -45,7 +45,7 @@ spec:
             cpu: "100m"
           limits:
             memory: "400Mi"
-            cpu: "150m" # 1/2 of a core
+            cpu: "150m"
         startupProbe: # Ensures that the application has enough time to start up before the liveness or readiness checks start.
           exec:
             command:
