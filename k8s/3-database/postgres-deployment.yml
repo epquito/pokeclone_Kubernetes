@@ -39,15 +39,14 @@ spec:
         volumeMounts:
         - name: postgres-data
           mountPath: /var/lib/postgresql_custom/data
-        # resources:
-        #   requests:
-        #     memory: "500Mi"
-        #     cpu: "250m"
-        #   limits:
-        #     memory: "1Gi"
-        #     cpu: "500m"
-        # Ensures that the application has enough time to start up before the liveness or readiness checks start.
-        startupProbe:
+        resources:
+          requests:
+            memory: "500Mi"
+            cpu: "250m" # 1/4 of a core
+          limits:
+            memory: "1Gi"
+            cpu: "500m" # 1/2 of a core
+        startupProbe: # Ensures that the application has enough time to start up before the liveness or readiness checks start.
           exec:
             command:
             - pg_isready

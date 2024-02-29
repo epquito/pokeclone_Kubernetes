@@ -52,11 +52,11 @@ spec:
                 key: DB_PASS
         resources:
           requests:
-            memory: "500Mi"
-            cpu: "250m"
+            memory: "250Mi"
+            cpu: "150m"
           limits:
-            memory: "1Gi"
-            cpu: "500m"
+            memory: "500Mi"
+            cpu: "300m"
         startupProbe:
           httpGet:
             path: /health
