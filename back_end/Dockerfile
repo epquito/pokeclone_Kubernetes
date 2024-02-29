@@ -27,8 +27,8 @@ EXPOSE 8000
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 # Build and push Docker image:
-# docker build -t slamoureux/pokeclone-back-end:eks .
-# docker push slamoureux/pokeclone-back-end:eks
+# docker build -t slamoureux/pokeclone-back-end:eks-rds .
+# docker push slamoureux/pokeclone-back-end:eks-rds
 
 # Run the backend container:
-# docker run -itd -p 8000:8000 --rm --name pokeclone-be slamoureux/pokeclone-back-end:eks
+# docker run -itd -p 8000:8000 --rm --name pokeclone-be slamoureux/pokeclone-back-end:eks-rds

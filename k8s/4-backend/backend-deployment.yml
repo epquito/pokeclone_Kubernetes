@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: pokeclone-backend
-        image: slamoureux/pokeclone-back-end:eks
+        image: slamoureux/pokeclone-back-end:eks-rds
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
