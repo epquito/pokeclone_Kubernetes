@@ -1,39 +1,21 @@
 import axios from "axios";
 
-// Create a base Axios instance with the common baseURL
-const axiosInstance = axios.create({
-  baseURL: "/api/v1/",
+export const userApi = axios.create({
+  baseURL: "/api/v1/user/"
 });
 
-// Add a request interceptor to include the Authorization header with the token
-axiosInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers['Authorization'] = `Token ${token}`;
-  }
-  return config;
-}, (error) => {
-  return Promise.reject(error);
+export const wildApi = axios.create({
+  baseURL: "/api/v1/pokemon/wild/"
 });
 
-// Use the axiosInstance to create specific API endpoints
-export const userApi = {
-  post: (url, data) => axiosInstance.post(`user/${url}`, data),
-};
+export const pokeApi = axios.create({
+  baseURL: "api/v1/pokemon/"
+});
 
-export const wildApi = {
-  get: (url) => axiosInstance.get(`pokemon/wild/${url}`),
-};
+export const teamApi = axios.create({
+  baseURL: "/api/v1/team/"
+});
 
-export const pokeApi = {
-  get: (url) => axiosInstance.get(`pokemon/${url}`),
-};
-
-export const teamApi = {
-  get: (url) => axiosInstance.get(`team/${url}`),
-  post: (url, data) => axiosInstance.post(`team/${url}`, data),
-};
-
-export const pokedexApi = {
-  get: () => axiosInstance.get(`pokemon/pokedex/`),
-};
+export const pokedexApi = axios.create({
+  baseURL: "api/v1/pokemon/pokedex/"
+});
