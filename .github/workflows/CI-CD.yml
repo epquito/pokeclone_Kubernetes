@@ -63,6 +63,8 @@ jobs:
       - name: Update kubeconfig for EKS
         run: |
           aws eks update-kubeconfig --name ${{ env.EKS_CLUSTER_NAME }} --kubeconfig ./kubeconfig.yml
+          echo "KUBECONFIG=$(pwd)/kubeconfig.yml" >> $GITHUB_ENV
+        # Set the kubeconfig file path explicitly and add it to the GITHUB_ENV for subsequent steps to recognize.
 
       - name: Deploy namespace and resource quota to EKS
         run: |
