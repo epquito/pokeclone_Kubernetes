@@ -1,8 +1,7 @@
 name: pokeclone-rds-cicd
 on:
-  push:
-    branches:
-      - eks-rds
+  workflow_dispatch:
+
 env:
   DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
   DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
