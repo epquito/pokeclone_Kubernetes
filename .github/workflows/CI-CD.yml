@@ -1,4 +1,4 @@
-name: pokeclone-cicd
+name: manual-pokeclone-cicd
 on:
   workflow_dispatch:
 
