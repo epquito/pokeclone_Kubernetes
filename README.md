@@ -10,7 +10,7 @@ The primary objective is to apply knowledge and skills in various technologies a
 
 - Stephan Lamoureux - [GitHub](https://www.github.com/stephanlamoureux)
 - Edwin Quito - [GitHub](https://github.com/epquito)
-- Xinxin Hou
+- Xinxin Hou [GitHub](https://github.com/hxin1123)
 
 ## Repository Structure
 
