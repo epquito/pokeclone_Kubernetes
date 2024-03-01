@@ -82,8 +82,8 @@ jobs:
         run: |
           kubectl apply -f k8s/4-backend -n ${{ env.K8S_NAMESPACE }}
 
-      - name: delay for 20s
-        run: sleep 20
+      - name: delay for 25s
+        run: sleep 25
 
       - name: Apply Django Migrations
         run: |
