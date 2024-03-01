@@ -1,154 +1,56 @@
-# Deploying with Minikube
+# Deploying with Amazon EKS
 
-This branch contains configurations and instructions for deploying the application stack on Minikube, a local Kubernetes environment. It's designed to simulate a Kubernetes cluster on a local machine, making it ideal for development and testing.
+This guide provides instructions for deploying the application stack on Amazon Elastic Kubernetes Service (EKS), a managed Kubernetes service that makes it easier to run Kubernetes applications in the AWS cloud.
 
 ## Overview
 
-The project structure organizes Kubernetes manifests into numbered directories to dictate the order of resource creation:
-
-- `1-namespace`: Namespace creation to isolate resources.
-- `2-quota`: Resource quotas to manage compute resources within the namespace.
-- `3-database`: PostgreSQL database deployment, including ConfigMaps for configuration, Secrets for sensitive data, and both Persistent Volumes (PV) and Persistent Volume Claims (PVC) for data persistence.
-- `4-backend`: Django backend deployment, including ConfigMaps, Secrets, and a Service to expose the backend within the cluster.
-- `5-frontend`: Frontend deployment using a NodePort Service to access the application via Minikube.
+The project utilizes Amazon EKS to deploy a full-stack application, comprising a React frontend, Django backend, and PostgreSQL database. The deployment process is automated with GitHub Actions, enabling Continuous Integration (CI) and Continuous Deployment (CD) workflows.
 
 ## Prerequisites
 
-- **Minikube**: Ensure Minikube is installed and running on your local machine. Use `minikube start` to start a Minikube instance.
-- **kubectl**: The Kubernetes command-line tool, `kubectl`, should be installed and configured to communicate with your Minikube cluster.
+- An AWS account and AWS CLI installed and configured.
+- Docker and kubectl installed locally.
+- A GitHub account for setting up CI/CD with GitHub Actions.
 
-## Deployment Steps
+## CI/CD Workflow Overview
 
-1. **Start Minikube**:
+The CI/CD pipeline is defined in `.github/workflows/pokeclone-cicd.yml` within the project repository and performs the following steps:
 
-   ```bash
-   minikube start
-   ```
+### Continuous Integration (CI)
 
-2. **Apply Namespace and Quotas**:
+1. **Checkout Repo**: Fetches the latest code from the specified branch.
+2. **Setup Docker Buildx**: Prepares Docker for building images.
+3. **Login to Docker Hub**: Authenticates to Docker Hub to enable image pushing.
+4. **Build and Push Docker Images**: Builds Docker images for the frontend and backend and pushes them to Docker Hub.
 
-   Navigate to the `k8s` directory and apply the namespace and quota configurations.
+### Continuous Deployment (CD)
 
-   ```bash
-   kubectl apply -f 1-namespace/
-   ```
+1. **Checkout Repo**: Fetches the latest code for deployment.
+2. **Configure AWS Credentials**: Sets up AWS credentials for EKS access.
+3. **Update kubeconfig for EKS**: Configures `kubectl` to communicate with the Amazon EKS cluster.
+4. **Deploy Resources to EKS**: Applies Kubernetes manifests in sequence to deploy namespaces, quotas, database components, backend, and frontend to EKS.
 
-   ```bash
-   kubectl apply -f 2-quota/
-   ```
+### CI/CD Environment Variables
 
-3. **Deploy the Database**:
+- `DOCKER_USERNAME` and `DOCKER_PASSWORD`: Used for Docker Hub authentication.
+- `AWS_REGION`, `K8S_NAMESPACE`, and `EKS_CLUSTER_NAME`: Used to specify the AWS region, Kubernetes namespace, and EKS cluster name for the deployment.
 
-   Deploy the PostgreSQL database components.
+## Setting up CI/CD
 
-   ```bash
-   kubectl apply -f 3-database/
-   ```
+1. Fork or clone the repository to your GitHub account.
+2. In your repository's Settings, navigate to Secrets and add the following secrets:
+   - `DOCKER_USERNAME`: Your Docker Hub username.
+   - `DOCKER_PASSWORD`: Your Docker Hub password.
+   - `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`: Credentials for an AWS IAM user with permissions to access EKS and manage Kubernetes resources.
+3. Modify the `.github/workflows/pokeclone-cicd.yml` file as necessary to match your project's requirements.
+4. Push changes to the branch specified in the workflow file to trigger the CI/CD pipeline.
 
-4. **Deploy the Backend**:
+## Accessing the Deployed Application
 
-   Once the database is up, deploy the Django backend application.
-
-   ```bash
-   kubectl apply -f 4-backend/
-   ```
-
-5. **Deploy the Frontend**:
-
-   Finally, deploy the frontend application.
-
-   ```bash
-   kubectl apply -f 5-frontend/
-   ```
-
-## Confirm Successful Deployment
-
-After all the manifest files have been applied, check the status of the deployment to make sure everything is running as expected:
-
-```bash
-kubectl get all -n pokeclone
-```
-
-## Managing Django Migrations and Superuser Creation
-
-After your backend deployment is up and running, you will need to apply Django migrations and create a superuser for admin access.
-
-### Apply Django Migrations
-
-Run the following command to apply migrations:
-
-```bash
-kubectl exec -it $(kubectl get pod -l app=pokeclone-backend -n pokeclone -o jsonpath="{.items[0].metadata.name}") -n pokeclone -- python manage.py migrate
-```
-
-### Create Django Superuser
-
-To create a superuser, run:
-
-```bash
-kubectl exec -it $(kubectl get pod -l app=pokeclone-backend -n pokeclone -o jsonpath="{.items[0].metadata.name}") -n pokeclone -- python manage.py createsuperuser
-```
-
-Follow the prompts to set up the superuser account.
-
-## Accessing the Application
-
-With the database configured and the superuser created, you're now ready to access the application.
-
-- **Frontend Application**:
-    To open the frontend application in your browser, use the `minikube service` command:
-
-    ```bash
-    minikube service frontend-service --url -n pokeclone
-    ```
-
-    This command will output the URL to access the frontend service. Copy and paste it into your browser to view the application.
-
-- **Django Admin Interface**:
-    Access the Django admin interface by navigating to `/admin` on your backend service's URL. Use the superuser credentials you created earlier to log in.
-
-## Managing the Application
-
-- **View Logs**:
-  To view the logs of a specific pod, first list all pods with `kubectl get pods -n <namespace>`, then use:
-
-    ```bash
-    kubectl logs <pod-name> -n <namespace>
-    ```
-
-- **Executing Commands Inside a Pod**: To execute commands inside a pod, such as accessing a Django or database shell, use:
-
-    ```bash
-    kubectl exec -it <pod-name> -n pokeclone -- /bin/bash
-    ```
-
-- **Checking Pod Status**: To check the status of all pods in the `pokeclone` namespace:
-
-    ```bash
-    kubectl get pods -n pokeclone
-    ```
-
-- **Describing Pod Details**: For detailed information about a specific pod, including events and configuration:
-
-    ```bash
-    kubectl describe pod <pod-name> -n pokeclone
-    ```
-
-- **Stopping Minikube**:
-  To stop Minikube and preserve your environment for later, use:
-
-    ```bash
-    minikube stop
-    ```
-
-- **Deleting Minikube**:
-  If you wish to completely remove all resources associated with Minikube, use:
-
-    ```bash
-    minikube delete
-    ```
+After the CI/CD pipeline successfully deploys the application, access it through the AWS Load Balancer URL provisioned for the frontend service. The Django admin interface can be accessed by appending `/admin` to the backend service's URL.
 
 ## Notes
 
-- This setup is intended for development and testing purposes. For production deployments, consider using a managed Kubernetes service provided by cloud providers like AWS EKS, Google GKE, or Azure AKS.
-- Remember to monitor resource usage within Minikube to avoid over consumption of your local machine's resources.
+- Ensure your AWS IAM user has sufficient permissions to create and manage EKS clusters and other AWS resources.
+- Monitor the GitHub Actions workflow execution for any errors and troubleshoot as necessary.
+- This setup is suitable for staging and production environments, with adjustments as per security best practices.
