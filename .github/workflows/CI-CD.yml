@@ -75,8 +75,8 @@ jobs:
         run: |
           kubectl apply -f k8s/3-database -n ${{ env.K8S_NAMESPACE }}
 
-      - name: delay for 20s
-        run: sleep 20
+      - name: delay for 30s
+        run: sleep 30
 
       - name: Deploy backend to EKS
         run: |
