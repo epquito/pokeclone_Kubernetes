@@ -1,4 +1,4 @@
-name: pokeclone-cicd
+name: pokeclone-cicd-eks
 on:
   push:
     branches:
