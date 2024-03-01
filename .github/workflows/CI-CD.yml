@@ -71,22 +71,19 @@ jobs:
           kubectl apply -f k8s/1-namespace -n ${{ env.K8S_NAMESPACE }}
           kubectl apply -f k8s/2-quota -n ${{ env.K8S_NAMESPACE }}
 
-      - name: delay for 15s
-        run: sleep 15
-
       - name: Deploy database to EKS
         run: |
           kubectl apply -f k8s/3-database -n ${{ env.K8S_NAMESPACE }}
 
-      - name: delay for 15s
-        run: sleep 15
+      - name: delay for 20s
+        run: sleep 20
 
       - name: Deploy backend to EKS
         run: |
           kubectl apply -f k8s/4-backend -n ${{ env.K8S_NAMESPACE }}
 
-      - name: delay for 15s
-        run: sleep 15
+      - name: delay for 20s
+        run: sleep 20
 
       - name: Apply Django Migrations
         run: |
