@@ -38,3 +38,7 @@ EXPOSE 8000
 
 # Start the Django app using the built-in server (use gunicorn or uwsgi for production)
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+# Build and push Docker image:
+# docker build -t slamoureux/pokeclone:minikube .
+# docker push slamoureux/pokeclone:minikube

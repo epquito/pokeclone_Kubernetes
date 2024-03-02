@@ -9,7 +9,7 @@ The project structure organizes Kubernetes manifests into numbered directories t
 - `1-namespace`: Namespace creation to isolate resources.
 - `2-quota`: Resource quotas to manage compute resources within the namespace.
 - `3-database`: PostgreSQL database deployment, including ConfigMaps for configuration, Secrets for sensitive data, and both Persistent Volumes (PV) and Persistent Volume Claims (PVC) for data persistence.
-- `4-backend`: Django backend deployment, including ConfigMaps, Secrets, and a Service to expose the backend within the cluster.
+- `4-backend`: Django backend deployment, including ConfigMaps, Secrets, and a Service to expose the backend within the cluster. The backend will also be serving the frontend static files.
 
 ## Prerequisites
 
