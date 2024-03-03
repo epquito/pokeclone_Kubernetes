@@ -13,6 +13,8 @@ The project structure organizes Kubernetes manifests into numbered directories t
 
 ## Diagram
 
+This diagram showcases the Minikube deployment architecture for the PokeClone app, emphasizing the Kubernetes resources like namespaces, quotas, database deployments, and how the Django backend serves both API requests and static files for the frontend. The interaction with these resources is primarily through kubectl apply commands run from the developer's machine, which configures the Minikube environment according to the project's Kubernetes manifests.
+
 ![Minikube Deployment Diagram](/images/minikube.png)
 
 ## Prerequisites
