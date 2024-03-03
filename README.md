@@ -7,6 +7,10 @@ This README outlines the steps needed to deploy the PokeClone application using 
 - Docker and Docker Compose installed on your system.
 - Clone or download the PokeClone application source code to your local machine.
 
+## Diagram
+
+![Docker Compose Deployment Diagram](/images/docker.png)
+
 ## Configuration
 
 1. **Environment File Setup**: Create a `.env` file in the `back_end` directory of your project. This file will store environment variables required by the Django application.
