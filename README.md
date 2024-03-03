@@ -8,6 +8,8 @@ The project utilizes Amazon EKS to deploy a full-stack application, comprising a
 
 ## Diagram
 
+This diagram showcases the EKS deployment architecture, including the CI/CD pipeline managed through GitHub Actions. It highlights the sequence of operations for continuous integration, such as building and pushing Docker images, and continuous deployment steps like configuring AWS credentials, updating kubeconfig for EKS, and deploying Kubernetes resources like namespaces, quotas, the PostgreSQL database, the Django backend, and the React frontend. The Django backend serves as the API server for the React frontend, which is accessed by users through an AWS Load Balancer URL.
+
 ![Diagram of the EKS Deployment](images/eks.png)
 
 ## Prerequisites
