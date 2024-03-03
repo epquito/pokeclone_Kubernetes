@@ -1,0 +1,50 @@
+@startuml PokeClone Minikube Deployment
+!pragma layout smetana
+allowmixing
+skinParam backgroundColor 0D1117
+
+package "Minikube Cluster" {
+    package "pokeclone Namespace" {
+        card "1-namespace\nNamespace" as Namespace
+        card "2-quota\nResource Quota" as Quota
+
+        package "3-database\nPostgreSQL Database" {
+            database "Postgres DB" as DB
+            file "ConfigMap" as DBConfigMap
+            agent "Secrets" as DBSecrets
+            storage "Persistent Volume" as PV
+            storage "Persistent Volume Claim" as PVC
+            DBConfigMap --> DB
+            DBSecrets --> DB
+            PVC --> DB
+            PV --> PVC
+        }
+
+        package "4-backend\nDjango Backend" {
+            component "Django App" as BackendApp
+            file "ConfigMap" as BackendConfigMap
+            agent "Secrets" as BackendSecrets
+            BackendConfigMap --> BackendApp
+            BackendSecrets --> BackendApp
+            DB --> BackendApp : "connects to"
+        }
+
+        frame "Frontend Static Files" as FrontendFiles {
+            note right: Served by Django Backend
+        }
+
+        BackendApp --> FrontendFiles : "serves"
+    }
+}
+
+cloud {
+    component "Developer Machine" as DevMachine
+    DevMachine --> Namespace : "kubectl apply"
+    DevMachine --> Quota : "kubectl apply"
+    DevMachine --> DB : "kubectl apply"
+    DevMachine --> BackendApp : "kubectl apply"
+}
+
+DevMachine ..> FrontendFiles : "accesses\nvia Minikube service"
+
+@enduml

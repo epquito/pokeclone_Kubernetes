@@ -11,6 +11,10 @@ The project structure organizes Kubernetes manifests into numbered directories t
 - `3-database`: PostgreSQL database deployment, including ConfigMaps for configuration, Secrets for sensitive data, and both Persistent Volumes (PV) and Persistent Volume Claims (PVC) for data persistence.
 - `4-backend`: Django backend deployment, including ConfigMaps, Secrets, and a Service to expose the backend within the cluster. The backend will also be serving the frontend static files.
 
+## Diagram
+
+![Minikube Deployment Diagram](/images/minikube.png)
+
 ## Prerequisites
 
 - **Minikube**: Ensure Minikube is installed and running on your local machine. Use `minikube start` to start a Minikube instance.
