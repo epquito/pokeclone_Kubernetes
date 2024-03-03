@@ -34,7 +34,11 @@ The repository is organized into multiple branches, each dedicated to different 
 
 ### `EKS` Branch
 
-- Dedicated to deploying the PokeClone application on AWS Elastic Kubernetes Service (EKS). This branch will cover the use of Terraform for infrastructure provisioning, configuring AWS RDS for the database, and deploying the application to EKS for a production-ready environment.
+- Dedicated to deploying the PokeClone application on AWS Elastic Kubernetes Service (EKS) for a production-ready environment with CI/CD through GitHub Actions.
+
+### `EKS-RDS` Branch
+
+- Instead of using a PostgreSQL container image for the database, this branch utilizes an AWS RDS database.
 
 ## Project Steps Overview
 
@@ -49,13 +53,5 @@ The repository is organized into multiple branches, each dedicated to different 
 9. **Backup and Alerting**: Implement automated backups for RDS and EC2 volumes using Amazon EventBridge and configure SNS notifications for monitoring alerts.
 10. **Autoscaling**: Configure autoscaling for the EKS cluster based on CPU utilization.
 11. **DNS and Route53**: (Instructions only) Define steps for configuring DNS records using Route53.
-
-## Capstone Limitations
-
-- All deployments must be in the AWS `us-east-1` region.
-- The `east1-user` AWS user must be used for deployment activities.
-- Cluster names should include the team name for identification.
-- Minimize the use of RDS to demo recordings to save costs.
-- Pay attention to volume permissions, Django migrations, and container configurations.
 
 By following the guidelines and instructions provided in each branch, the team aims to demonstrate a comprehensive approach to deploying a modern web application using best practices in DevOps and cloud computing.
