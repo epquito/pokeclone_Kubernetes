@@ -21,7 +21,9 @@ Xinxin Hou [GitHub](https://github.com/hxin1123)
 
 ## Repository Structure
 
-The repository is organized into multiple branches, each dedicated to different stages of the deployment process:
+The deployment of this app is split between two repositories. This one handles the Docker and Kubernetes, while the AWS infrastructure is created through our [Terraform](https://github.com/epquito/terraform-pokeclone) repo.
+
+This repository is organized into multiple branches, each dedicated to different stages of the deployment process:
 
 ### `master` Branch
 
