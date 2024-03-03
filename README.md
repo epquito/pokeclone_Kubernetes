@@ -2,6 +2,10 @@
 
 This repository serves as the central hub for the deployment of the [PokeClone](https://github.com/phubui1996/pokeclone) application, an educational project developed by a separate team. PokeClone combines a React front-end with a Django back-end to offer a Pokemon-inspired gaming experience. The focus of our project is on implementing DevOps practices to automate, scale, and efficiently deploy this application on AWS cloud using a variety of technologies, including Terraform, Docker, Kubernetes, and AWS services.
 
+<div align="center">
+<img src="./images/pokevets.png">
+</div>
+
 ## Objective
 
 The primary objective is to apply knowledge and skills in various technologies and tools studied throughout the course, focusing on automation, scalability, and efficient deployment on the AWS cloud.
