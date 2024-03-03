@@ -9,6 +9,8 @@ This README outlines the steps needed to deploy the PokeClone application using 
 
 ## Diagram
 
+This diagram describes the Docker Compose deployment, showing how the PostgreSQL database, Django backend, and React frontend are set up and interact with each other. The PostgreSQL database container is used by the Django backend container, which, in turn, provides API services to the React frontend container. Access to the frontend is through a web browser, with the frontend making API requests to the backend.
+
 ![Docker Compose Deployment Diagram](/images/docker.png)
 
 ## Configuration
