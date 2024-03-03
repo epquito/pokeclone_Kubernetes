@@ -6,6 +6,10 @@ This guide provides instructions for deploying the application stack on Amazon E
 
 The project utilizes Amazon EKS to deploy a full-stack application, comprising a React frontend, Django backend, and PostgreSQL database. The deployment process is automated with GitHub Actions, enabling Continuous Integration (CI) and Continuous Deployment (CD) workflows.
 
+## Diagram
+
+![Diagram of the EKS Deployment](images/eks.png)
+
 ## Prerequisites
 
 - An AWS account and AWS CLI installed and configured.

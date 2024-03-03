@@ -1,0 +1,42 @@
+@startuml PokeClone EKS Deployment Flow
+!theme spacelab
+!pragma layout smetana
+skinParam backgroundColor 0D1117
+
+actor "Developer" as Dev
+rectangle "GitHub" {
+    rectangle "CI/CD Pipeline\n(GitHub Actions)" as CICD {
+        [Checkout Repo] --> [Setup Docker Buildx]
+        [Setup Docker Buildx] --> [Login to Docker Hub]
+        [Login to Docker Hub] --> [Build and Push Docker Images]
+        [Build and Push Docker Images] --> [Configure AWS Credentials]
+        [Configure AWS Credentials] --> [Update kubeconfig]
+        [Update kubeconfig] --> [Deploy Resources to EKS]
+    }
+}
+
+cloud "AWS Cloud" {
+    package "Amazon EKS Cluster" {
+        frame "Kubernetes Resources" {
+            rectangle "1-namespace\nNamespace" as Namespace
+            rectangle "2-quota\nResource Quota" as Quota
+            database "3-database\nPostgreSQL DB" as DB
+            component "4-backend\nDjango Backend" as Backend
+            component "5-frontend\nReact Frontend" as Frontend
+        }
+    }
+}
+
+Dev --> CICD : Initiates CI/CD\npipeline
+CICD --> Namespace : Deploys
+CICD --> Quota : Deploys
+CICD --> DB : Deploys
+CICD --> Backend : Deploys
+CICD --> Frontend : Deploys
+
+Backend --> DB : "connects to\nPostgreSQL DB"
+Frontend --> Backend : "makes API calls to\nDjango Backend"
+
+note right of Frontend : Accessed through\nAWS Load Balancer URL
+
+@enduml
