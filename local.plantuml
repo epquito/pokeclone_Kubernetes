@@ -2,6 +2,7 @@
 !theme spacelab
 !pragma layout smetana
 allowmixing
+skinParam backgroundColor 0D1117
 
 package "User's Local Machine" {
     package "Python Virtual Environment" {
