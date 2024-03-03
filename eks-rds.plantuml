@@ -1,0 +1,41 @@
+@startuml PokeClone EKS Deployment with RDS
+!theme spacelab
+!pragma layout smetana
+skinParam backgroundColor 0D1117
+
+actor Developer as Dev
+rectangle "GitHub" {
+    rectangle "CI/CD Pipeline\n(GitHub Actions)" as CICD {
+        [Checkout Repo] -down-> [Setup Docker Buildx]
+        [Setup Docker Buildx] -down-> [Login to Docker Hub]
+        [Login to Docker Hub] -down-> [Build and Push Docker Images]
+        [Build and Push Docker Images] -down-> [Configure AWS Credentials]
+        [Configure AWS Credentials] -down-> [Update kubeconfig]
+        [Update kubeconfig] -down-> [Deploy to EKS]
+    }
+}
+
+cloud "AWS Cloud" {
+    package "Amazon EKS" {
+        frame "Kubernetes Resources" {
+            rectangle "Namespaces & Quotas" as NQ
+            component "Django Backend" as Backend
+            component "React Frontend" as Frontend
+        }
+    }
+
+    database "Amazon RDS\nPostgreSQL" as RDS {
+        [DB Details]
+    }
+}
+
+Dev --> CICD : Initiates\nCI/CD pipeline
+CICD --> NQ : Deploys
+CICD --> Backend : Deploys
+CICD --> Frontend : Deploys
+Backend --> RDS : Connects to
+
+note right of Frontend : Accessed through\nAWS Load Balancer URL
+note right of RDS : Stores all\napplication data
+
+@enduml
