@@ -13,6 +13,8 @@ Before you begin, ensure you have the following installed on your system:
 
 ## Diagram
 
+This outlines the local deployment structure of the PokeClone app, illustrating the Django backend running within a Python virtual environment on the user's local machine, which connects to a PostgreSQL database. The React frontend is served by Vite, and the web browser is where the frontend is accessed and interacts with the backend.
+
 ![Local Deployment Diagram](/images/local.png)
 
 ## Setup Instructions
