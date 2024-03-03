@@ -1,0 +1,33 @@
+@startuml PokeClone Docker Compose Deployment
+!pragma layout smetana
+allowmixing
+skinParam backgroundColor 0D1117
+
+package "Docker Compose" {
+    node "PostgreSQL Database" as Postgres {
+        database "pokeclone_db" as DB
+    }
+
+    node "Django Backend" as Django {
+        component "Django App" as DjangoApp
+        DB -[hidden]- DjangoApp : "connects to"
+    }
+
+    node "React Frontend" as React {
+        component "Vite Server" as Vite
+        DjangoApp -[hidden]-> Vite : "API requests"
+    }
+
+    Postgres --> Django : "database\nservice"
+    Django --> React : "backend\ndependency"
+}
+
+cloud {
+    component "Web Browser" as Browser
+}
+
+Browser --> React : "accesses\nhttp://localhost:8080"
+Django --> Postgres : "uses\nPOSTGRES_*"
+React --> Django : "API requests\nto http://localhost:8000"
+
+@enduml
