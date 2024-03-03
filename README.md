@@ -16,15 +16,52 @@ The project structure organizes Kubernetes manifests into numbered directories t
 - **Minikube**: Ensure Minikube is installed and running on your local machine. Use `minikube start` to start a Minikube instance.
 - **kubectl**: The Kubernetes command-line tool, `kubectl`, should be installed and configured to communicate with your Minikube cluster.
 
+**Start Minikube**:
+
+```bash
+minikube start
+```
+
+## Update Frontend Configuration
+
+To ensure the frontend application communicates correctly with the backend services deployed in Minikube, update the base URLs in the frontend code to match the Minikube IP and NodePort.
+
+### Determine Minikube IP
+
+First, determine the IP address of your Minikube instance:
+
+```bash
+minikube ip
+```
+
+This command will output the IP address used by Minikube, for example, `192.168.49.2`.
+
+### Update Frontend API Base URLs
+
+In the `utilities.jsx` file within the frontend project, update the base URLs for your API calls to use the Minikube IP and the NodePort of your backend service. Assuming your NodePort is `30001`, the updates would look like this:
+
+```javascript
+// utilities.jsx
+import axios from "axios";
+
+export const userApi = axios.create({
+  baseURL: "http://192.168.49.2:30001/api/v1/user/",
+});
+
+// Repeat for other APIs
+```
+
+### Update Navigation Component
+
+Similarly, in the `NavBar.jsx` component, ensure any programmatic navigation or links that rely on backend services are updated to reflect the Minikube IP and NodePort.
+
+## Note on Minikube IP Changes
+
+The Minikube IP address can change each time Minikube is started. After any restart of Minikube, ensure you check the IP address again with `minikube ip` and update your frontend configuration accordingly.
+
 ## Deployment Steps
 
-1. **Start Minikube**:
-
-   ```bash
-   minikube start
-   ```
-
-2. **Apply Namespace and Quotas**:
+1. **Apply Namespace and Quotas**:
 
    Navigate to the `k8s` directory and apply the namespace and quota configurations.
 
@@ -36,7 +73,7 @@ The project structure organizes Kubernetes manifests into numbered directories t
    kubectl apply -f 2-quota/
    ```
 
-3. **Deploy the Database**:
+2. **Deploy the Database**:
 
    Deploy the PostgreSQL database components.
 
@@ -44,7 +81,7 @@ The project structure organizes Kubernetes manifests into numbered directories t
    kubectl apply -f 3-database/
    ```
 
-4. **Deploy the Backend**:
+3. **Deploy the Backend**:
 
    Once the database is up, deploy the Django backend application.
 
@@ -86,17 +123,17 @@ Follow the prompts to set up the superuser account.
 
 With the database configured and the superuser created, you're now ready to access the application.
 
-- **Frontend Application**:
-    To open the frontend application in your browser, use the `minikube service` command:
+**Frontend Application**:
+To open the frontend application in your browser, use the `minikube service` command:
 
-    ```bash
-    minikube service backend-service --url -n pokeclone
-    ```
+```bash
+minikube service backend-service --url -n pokeclone
+```
 
-    This command will output the URL to access the frontend service. Copy and paste it into your browser to view the application.
+This command will output the URL to access the frontend service. Copy and paste it into your browser to view the application.
 
-- **Django Admin Interface**:
-    Access the Django admin interface by navigating to `/admin` on your backend service's URL. Use the superuser credentials you created earlier to log in.
+**Django Admin Interface**:
+Access the Django admin interface by navigating to `/admin` on your backend service's URL. Use the superuser credentials you created earlier to log in.
 
 ## Managing the Application
 

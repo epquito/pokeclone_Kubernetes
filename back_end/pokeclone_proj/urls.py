@@ -1,25 +1,9 @@
-"""
-URL configuration for pokeclone_proj project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path  # Import re_path here
 from django.http import HttpResponse
 from django.conf import settings
 import os
+from django.conf.urls.static import static
 
 
 # Serve the index.html for the root URL
@@ -39,7 +23,9 @@ urlpatterns = [
     path("api/v1/pokemon/", include("pokemon_app.urls")),
     path("api/v1/team/", include("team_app.urls")),
     path("health/", health, name="health"),
-    path(
-        "", front_end, name="front_end"
-    ),  # Serve the frontend's index.html at the root URL
+]
+
+# Adding a catch-all route for SPA routing, excluding URLs starting with 'static/' using regex
+urlpatterns += [
+    re_path(r"^(?!static/|api/).*$", front_end, name="front_end_spa"),
 ]

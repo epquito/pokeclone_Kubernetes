@@ -25,15 +25,15 @@ export default function Navbar({ user, setUser, isLoggedIn, setIsLoggedIn }) {
 
   const setLink = () => {
     console.log(window.location.href)
-    if (window.location.href === 'http://localhost:5173/signup') {
+    if (window.location.href === 'http://192.168.49.2:30001/signup') {
       setLinkWords('Log In')
       setLinkWordsLink('/login')
     }
-    else if (window.location.href === 'http://localhost:5173/login') {
+    else if (window.location.href === 'http://192.168.49.2:30001/login') {
       setLinkWords('Sign Up')
       setLinkWordsLink('/signup')
     }
-    else if (window.location.href === 'http://localhost:5173/house' || window.location.href === 'http://localhost:5173/pokecenter' || window.location.href === 'http://localhost:5173/pokedex') {
+    else if (window.location.href === 'http://192.168.49.2:30001/house' || window.location.href === 'http://192.168.49.2:30001/pokecenter' || window.location.href === 'http://192.168.49.2:30001/pokedex') {
       setLinkWords('Map')
       setLinkWordsLink('/main')
     }
