@@ -1,0 +1,24 @@
+@startuml name local
+!theme spacelab
+!pragma layout smetana
+allowmixing
+
+package "User's Local Machine" {
+    package "Python Virtual Environment" {
+        component "Django Backend" as Django
+    }
+    database "PostgreSQL Database" as Postgres
+}
+
+package "React Frontend" {
+    node "Vite Server" as Vite {
+        component "Front End Dependencies" as FrontEnd
+    }
+}
+
+component "Web Browser" as Browser
+
+Postgres <-- Django : "connects to"
+Vite --> Django : "makes API requests to"
+Browser --> Vite : "accesses"
+@enduml

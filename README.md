@@ -11,6 +11,10 @@ Before you begin, ensure you have the following installed on your system:
 - Node.js and npm (Node package manager)
 - PostgreSQL
 
+## Diagram
+
+![Local Deployment Diagram](/images/local.png)
+
 ## Setup Instructions
 
 ### Setting Up the Backend
