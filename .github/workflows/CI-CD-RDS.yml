@@ -70,10 +70,6 @@ jobs:
           kubectl apply -f k8s/1-namespace -n ${{ env.K8S_NAMESPACE }}
           kubectl apply -f k8s/2-quota -n ${{ env.K8S_NAMESPACE }}
 
-      - name: Deploy database to EKS
-        run: |
-          kubectl apply -f k8s/3-database -n ${{ env.K8S_NAMESPACE }}
-
       - name: delay for 30s
         run: sleep 30
 
