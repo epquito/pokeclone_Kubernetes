@@ -4,7 +4,7 @@ metadata:
   name: backend-configmap
   namespace: pokeclone
 data:
-  DB_HOST: "pokeclone-db-service"
+  DB_HOST: "pokeclone-db.ckomogmlcg5o.us-east-1.rds.amazonaws.com"
   DB_PORT: "5432"
   DB_NAME: "pokeclone_db"
   DB_USER: "postgres"
