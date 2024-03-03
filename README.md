@@ -9,6 +9,7 @@ The primary objective is to apply knowledge and skills in various technologies a
 ## Development Team
 <div align="center">
 <img src="./images/pokevets.png">
+<hr>
 
 Stephan Lamoureux - [GitHub](https://www.github.com/stephanlamoureux)
 
