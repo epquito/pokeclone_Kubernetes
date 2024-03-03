@@ -64,4 +64,5 @@ This repository is organized into multiple branches, each dedicated to different
 11. **DNS and Route53**: (Instructions only) Define steps for configuring DNS records using Route53.
 
 <hr>
+
 By following the guidelines and instructions provided in each branch, the team aims to demonstrate a comprehensive approach to deploying a modern web application using best practices in DevOps and cloud computing.
