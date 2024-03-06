@@ -1,4 +1,4 @@
-# Deploying with Amazon EKS
+# Deploying with Amazon EKS & RDS
 
 This guide provides instructions for deploying the application stack on Amazon Elastic Kubernetes Service (EKS), a managed Kubernetes service that makes it easier to run Kubernetes applications in the AWS cloud.
 
